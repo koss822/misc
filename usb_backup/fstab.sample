@@ -1,0 +1,1 @@
+/dev/mapper/backups /mnt/backups    btrfs   compress,user,noauto
