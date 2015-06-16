@@ -26,7 +26,7 @@ case "$1" in
     backup)
         if [ -f $BKP_TARGET/taken ]; then
             mkdir -p $BKP_TARGET/snaps
-            sudo btrfs subvolume snapshot $BKP_TARGET/current /mnt/backups/snaps/`cat /mnt/backups/taken`
+            sudo btrfs subvolume snapshot $BKP_TARGET/current $BKP_TARGET/snaps/`cat $BKP_TARGET/taken`
         fi
         date +%Y-%m-%d_%H:%M > $BKP_TARGET/taken
         rsync --exclude-from=$EXCLUDE -av --del --ignore-errors $BKP_SOURCE/* $BKP_TARGET/current/
