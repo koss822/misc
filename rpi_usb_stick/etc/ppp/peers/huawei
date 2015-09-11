@@ -1,0 +1,12 @@
+/dev/serial/by-id/usb-HUAWEI_Technology_HUAWEI_Mobile-if00-port0
+115200
+
+nodetach
+connect '/usr/sbin/chat -v -f /etc/ppp/peers/huawei-on'
+disconnect '/usr/sbin/chat -v -f /etc/ppp/peers/huawei-off'
+noauth
+usepeerdns
+local
+defaultroute
+replacedefaultroute
+noipdefault
