@@ -2,7 +2,7 @@
 Misc utilities for Linux, Raspberry Pi, Python, etc...
 
 ## usb_backup
-https://github.com/koss822/misc/usb_backup/
+https://github.com/koss822/misc/tree/master/usb_backup
 ### DESCRIPTION
 
 I wrote this tool because I needed simple utility which will backup
@@ -36,7 +36,7 @@ It is neccesary to use Btrfs for snapshot, and compression abilities
 3. ./usb_backup.sh umount
 
 ## rpi_usb_stick
-https://github.com/koss822/misc/rpi_usb_stick
+https://github.com/koss822/misc/tree/master/rpi_usb_stick
 ### DESCRIPTION
 
 These are configuration files for using Raspberry Pi with 3G modem Huawei E173 from CZ O2 (might works with other E173 models)
