@@ -42,3 +42,13 @@ https://github.com/koss822/misc/tree/master/rpi_usb_stick
 These are configuration files for using Raspberry Pi with 3G modem Huawei E173 from CZ O2 (might works with other E173 models)
 You can find more information here:
 https://www.enigma14.eu/wiki/RPi_3G_Mobile_connection_with_O2_Huawei_E173_%28CZ%29
+
+## ad_pcf8591
+https://github.com/koss822/misc/tree/master/ad_pcf8591
+### DESCRIPTION
+
+This is simple modified example to run correctly with pcf8591 AD converter
+
+1. Find AD converter address - i2cdetect -y 1
+2. Donwload and install quick2wire library - https://github.com/quick2wire/quick2wire-python-api
+3. Run ./pcf8591read 48 1 (where 48 is device address detected by i2cdetect and 1 is input analog port)
