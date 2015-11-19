@@ -10,6 +10,11 @@
 BKP_SOURCE=/data
 BKP_TARGET=/mnt/backups
 
+# Add this line to /etc/fstab
+# ========================================================================
+# /dev/mapper/backups /mnt/backups btrfs
+# ========================================================================
+
 # Keyfile will make it easier to you mount backups second time
 # Always keep keyfile on encrypted drive
 # You can generate keyfile with this command:
