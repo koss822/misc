@@ -13,7 +13,8 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+along with this program.
+If not, see http://www.gnu.org/licenses/
 =========================================================================
 
 
@@ -30,7 +31,6 @@ rpi# cd /usr/local/ws
 rpi# pip install -r requirements.txt
 5. Modify install/ifup.sh to your network requirements
 local# vi install/ifup.sh
-
 change 192.168.0.1 -> your local lan network gateway
 change 192.168.0.0/24 -> your local lan network address/netmask
 6. Upload ifup.sh
