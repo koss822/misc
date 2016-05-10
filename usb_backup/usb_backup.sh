@@ -12,7 +12,7 @@ BKP_TARGET=/mnt/backups
 
 # Add this line to /etc/fstab
 # ========================================================================
-# /dev/mapper/backups /mnt/backups btrfs
+# /dev/mapper/backups /mnt/backups btrfs noauto
 # ========================================================================
 
 # Keyfile will make it easier to you mount backups second time
