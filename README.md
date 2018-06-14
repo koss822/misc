@@ -1,6 +1,26 @@
 # misc
 Misc utilities for Linux, Raspberry Pi, Python, etc...
 
+
+## My VIM settings
+![VIM screenshot](https://raw.githubusercontent.com/koss822/misc/master/imgs/vim-screenshot.png "VIM Screenshot")
+
+### DESCRIPTION
+This is my VIM settings. It makes just VIM look better, provide some basic support (e.g. intend, backspace, filename) and all things to be in VIM more comfortable.
+
+### INSTALATION
+RedHat/Ubuntu
+
+1. sudo -s
+2. git clone https://github.com/koss822/misc.git
+3. cd misc
+4. cp -R myvim/* /etc
+
+Ubuntu additional steps
+
+5. mv /usr/share/vim/vimrc /usr/share/vim/vimrc.old
+6. ln -s /etc/vimrc /usr/share/vim/vimrc
+
 ## usb_backup
 https://github.com/koss822/misc/tree/master/usb_backup
 ### DESCRIPTION
