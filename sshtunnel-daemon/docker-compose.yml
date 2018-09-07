@@ -1,0 +1,7 @@
+sshtunnel:
+  build: .
+  volumes:
+    - /PATH_TO_SETTINGS_DIR/:/usr/local/sshtunnel-app/settings/
+  ports:
+    - 2000:2000
+  restart: always
