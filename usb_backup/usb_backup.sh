@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 # usb_backup.sh - see README.md
 # https://github.com/koss822/misc/usb_backup
 # ========================================================================

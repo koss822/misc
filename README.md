@@ -72,3 +72,10 @@ This is simple modified example to run correctly with pcf8591 AD converter
 1. Find AD converter address - i2cdetect -y 1
 2. Donwload and install quick2wire library - https://github.com/quick2wire/quick2wire-python-api
 3. Run ./pcf8591read 48 1 (where 48 is device address detected by i2cdetect and 1 is input analog port)
+
+## AWS
+https://github.com/koss822/misc/tree/master/aws
+### DESCRIPTION
+![AWS Screenshot](https://raw.githubusercontent.com/koss822/misc/master/imgs/aws-screenshot.png "AWS Screenshot")
+
+Simple tool to reboot server using AWS Lambda function when HTTP site does not contains selected text
