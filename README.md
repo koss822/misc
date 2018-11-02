@@ -79,3 +79,9 @@ https://github.com/koss822/misc/tree/master/aws
 ![AWS Screenshot](https://raw.githubusercontent.com/koss822/misc/master/imgs/aws-screenshot.png "AWS Screenshot")
 
 Simple tool to reboot server using AWS Lambda function when HTTP site does not contains selected text
+
+## OpenVPN
+https://github.com/koss822/misc/tree/master/openvpn
+
+### DESCRIPTION
+Simple tool to generate OpenVPN configs using static IP addresses for hosts

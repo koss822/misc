@@ -1,0 +1,15 @@
+---
+server:
+  fqdn: 'openvpn.server.com'
+  port: '443'
+  proto: 'udp'
+  topology: '192.168.10.0 255.255.255.0'
+
+clients:
+  - name: client1
+    ip: 192.168.10.10
+    subnet: 255.255.255.0
+  
+  - name: client2
+    ip: 192.168.10.20
+    subnet: 255.255.255.0
