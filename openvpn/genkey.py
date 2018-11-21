@@ -32,6 +32,8 @@ ca keys/ca.crt
 cert keys/""" + vpn['name'] + """.crt
 key keys/""" + vpn['name'] + """.key
 comp-lzo
+cipher AES-256-CBC
+remote-cert-eku "TLS Web Server Authentication"
 """
 
 def createccd(vpn):
@@ -93,6 +95,7 @@ cert keys/server.crt
 key keys/server.key
 dh keys/dh2048.pem
 comp-lzo
+cipher AES-256-CBC
 log /var/log/openvpn.log
 keepalive 10 120
 server """ + config['server']['topology'] + """
