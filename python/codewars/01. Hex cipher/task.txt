@@ -1,0 +1,12 @@
+http://www.codewars.com/kata/59c191df4f98a8a70b00001e/train/python
+
+In order to bamboozle your friends, you decide to encode your communications in hexadecimal, using an ASCII to hexadecimal table. At first, none of them can understand your messages. But quickly enough, one of your cleverer friends uncovers your trick and starts sending messages in hexadecimal himself. To stay one (or shall we say, n) step(s) ahead of your friend, you decide to go one step further : you’ll apply the ASCII to hexadecimal conversion more than once.
+
+Your Task
+Implement methods encode and decode of class HexCipher, as described above.
+
+Provided to you is a dictionary, TEXT2HEX, mapping ASCII characters to their corresponding hexadecimal code (which will always be 2 digits). For example, TEXT2HEX['a'] evaluates to '61'.
+
+Happy bamboozlin’!
+
+Note: if you get a timeout, just submit it again. If you repeatedly get a timeout, then your code needs some optimization 🙂

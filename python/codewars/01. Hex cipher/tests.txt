@@ -1,0 +1,8 @@
+test.describe('Sample tests')
+test.assert_equals(HexCipher.encode('Hey guys', 0), 'Hey guys')
+test.assert_equals(HexCipher.decode('Hey guys', 0), 'Hey guys')
+test.assert_equals(HexCipher.encode('Hey guys', 1), '4865792067757973')
+test.assert_equals(HexCipher.decode('4865792067757973', 1), 'Hey guys')
+test.assert_equals(HexCipher.encode('Hey guys', 2), '34383635373932303637373537393733')
+test.assert_equals(HexCipher.decode('34383635373932303637373537393733', 2), 'Hey guys')
+test.assert_equals(HexCipher.decode('34383635373932303637373537393733', 1), '4865792067757973')
