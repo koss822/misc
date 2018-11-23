@@ -1,0 +1,9 @@
+# /etc/systemd/system/openvpn-restart.service
+[Unit]
+Description=OpenVPN restart
+After=network-online.target
+[Service]
+Restart=on-failure
+ExecStart=/usr/local/sbin/restart_openvpn.py
+[Install]
+WantedBy=multi-user.target
