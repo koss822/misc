@@ -7,6 +7,7 @@ set rtp+=/etc/vim/bundle/vim-airline
 set rtp+=/etc/vim/bundle/vim-airline-themes
 set rtp+=/etc/vim
 set backspace=2
+execute pathogen#infect()
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -15,6 +16,9 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+
+" Dependencies
+Plugin 'prabirshrestha/async.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -37,4 +41,5 @@ highlight Comment ctermfg=green
 set laststatus=2
 let &t_Co=256
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab

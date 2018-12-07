@@ -1,28 +1,40 @@
-" MIT License. Copyright (c) 2013-2016 Bailey Ling.
+" MIT License. Copyright (c) 2013-2018 Bailey Ling et al.
 " vim: et ts=2 sts=2 sw=2
 
 scriptencoding utf-8
 
 let s:prototype = {}
 
-function! s:prototype.split(...)
+function! s:prototype.split(...) dict
   call add(self._sections, ['|', a:0 ? a:1 : '%='])
 endfunction
 
-function! s:prototype.add_section_spaced(group, contents)
+function! s:prototype.add_section_spaced(group, contents) dict
   let spc = empty(a:contents) ? '' : g:airline_symbols.space
   call self.add_section(a:group, spc.a:contents.spc)
 endfunction
 
-function! s:prototype.add_section(group, contents)
+function! s:prototype.add_section(group, contents) dict
   call add(self._sections, [a:group, a:contents])
 endfunction
 
-function! s:prototype.add_raw(text)
+function! s:prototype.add_raw(text) dict
   call add(self._sections, ['', a:text])
 endfunction
 
-function! s:get_prev_group(sections, i)
+function! s:prototype.insert_section(group, contents, position) dict
+  call insert(self._sections, [a:group, a:contents], a:position)
+endfunction
+
+function! s:prototype.insert_raw(text, position) dict
+  call insert(self._sections, ['', a:text], a:position)
+endfunction
+
+function! s:prototype.get_position() dict
+  return len(self._sections)
+endfunction
+
+function! airline#builder#get_prev_group(sections, i)
   let x = a:i - 1
   while x >= 0
     let group = a:sections[x][0]
@@ -34,7 +46,20 @@ function! s:get_prev_group(sections, i)
   return ''
 endfunction
 
-function! s:prototype.build()
+function! airline#builder#get_next_group(sections, i)
+  let x = a:i + 1
+  let l = len(a:sections)
+  while x < l
+    let group = a:sections[x][0]
+    if group != '' && group != '|'
+      return group
+    endif
+    let x = x + 1
+  endwhile
+  return ''
+endfunction
+
+function! s:prototype.build() dict
   let side = 1
   let line = ''
   let i = 0
@@ -48,8 +73,10 @@ function! s:prototype.build()
     let group = section[0]
     let contents = section[1]
     let pgroup = prev_group
-    let prev_group = s:get_prev_group(self._sections, i)
-    if group ==# 'airline_c' && !self._context.active && has_key(self._context, 'bufnr')
+    let prev_group = airline#builder#get_prev_group(self._sections, i)
+    if group ==# 'airline_c' && &buftype ==# 'terminal' && self._context.active
+      let group = 'airline_term'
+    elseif group ==# 'airline_c' && !self._context.active && has_key(self._context, 'bufnr')
       let group = 'airline_c'. self._context.bufnr
     elseif prev_group ==# 'airline_c' && !self._context.active && has_key(self._context, 'bufnr')
       let prev_group = 'airline_c'. self._context.bufnr
@@ -100,7 +127,7 @@ function! s:prototype.build()
   return line
 endfunction
 
-function! s:should_change_group(group1, group2)
+function! airline#builder#should_change_group(group1, group2)
   if a:group1 == a:group2
     return 0
   endif
@@ -115,15 +142,21 @@ endfunction
 
 function! s:get_transitioned_seperator(self, prev_group, group, side)
   let line = ''
-  call airline#highlighter#add_separator(a:prev_group, a:group, a:side)
-  let line .= '%#'.a:prev_group.'_to_'.a:group.'#'
-  let line .= a:side ? a:self._context.left_sep : a:self._context.right_sep
-  let line .= '%#'.a:group.'#'
+  if get(a:self._context, 'tabline', 0) && get(g:, 'airline#extensions#tabline#alt_sep', 0) && a:group ==# 'airline_tabsel' && a:side
+    call airline#highlighter#add_separator(a:prev_group, a:group, 0)
+    let line .= '%#'.a:prev_group.'_to_'.a:group.'#'
+    let line .=  a:self._context.right_sep.'%#'.a:group.'#'
+  else
+    call airline#highlighter#add_separator(a:prev_group, a:group, a:side)
+    let line .= '%#'.a:prev_group.'_to_'.a:group.'#'
+    let line .= a:side ? a:self._context.left_sep : a:self._context.right_sep
+    let line .= '%#'.a:group.'#'
+  endif
   return line
 endfunction
 
 function! s:get_seperator(self, prev_group, group, side)
-  if s:should_change_group(a:prev_group, a:group)
+  if airline#builder#should_change_group(a:prev_group, a:group)
     return s:get_transitioned_seperator(a:self, a:prev_group, a:group, a:side)
   else
     return a:side ? a:self._context.left_alt_sep : a:self._context.right_alt_sep
@@ -132,6 +165,7 @@ endfunction
 
 function! s:get_accented_line(self, group, contents)
   if a:self._context.active
+    " active window
     let contents = []
     let content_parts = split(a:contents, '__accent')
     for cpart in content_parts
@@ -141,6 +175,7 @@ function! s:get_accented_line(self, group, contents)
     let line = join(contents, a:group)
     let line = substitute(line, '__restore__', a:group, 'g')
   else
+    " inactive window
     let line = substitute(a:contents, '%#__accent[^#]*#', '', 'g')
     let line = substitute(line, '%#__restore__#', '', 'g')
   endif
@@ -159,6 +194,11 @@ function! s:section_is_empty(self, content)
 
   " only check, if airline#skip_empty_sections == 1
   if get(g:, 'airline_skip_empty_sections', 0) == 0
+    return 0
+  endif
+
+  " only check, if airline#skip_empty_sections == 1
+  if get(w:, 'airline_skip_empty_sections', -1) == 0
     return 0
   endif
   " assume accents sections to be never empty
@@ -202,4 +242,3 @@ function! airline#builder#new(context)
         \ }, 'keep')
   return builder
 endfunction
-
