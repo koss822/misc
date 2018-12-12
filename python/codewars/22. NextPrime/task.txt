@@ -1,3 +1,5 @@
+https://www.codewars.com/kata/next-prime/python
+
 Get the next prime number!
 
 You will get a numbern (>= 0) and your task is to find the next prime number.
