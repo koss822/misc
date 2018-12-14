@@ -1,6 +1,6 @@
 #!/bin/bash
 # EXEC - curl -L http://bit.ly/rpiwhitenoise | bash
-sudo apt install mpg123
+sudo apt install -y mpg123
 sudo systemctl enable autologin@tty1.service
 sudo systemctl start ssh
 sudo systemctl enable ssh
