@@ -1,0 +1,4 @@
+https://www.codewars.com/kata/simple-fun-number-23-square-digits-sequence/train/python
+
+
+This task is unfinished :(
