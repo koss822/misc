@@ -43,3 +43,7 @@ let &t_Co=256
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
+
+" Intend
+ map <Tab> >
+ map <S-Tab> <
