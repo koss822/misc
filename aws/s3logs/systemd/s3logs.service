@@ -1,0 +1,9 @@
+# /etc/systemd/system/s3logs.service
+[Unit]
+Description=s3logs
+After=network-online.target
+[Service]
+Restart=on-failure
+ExecStart=/usr/local/s3logs/s3logs_daemon.py
+[Install]
+WantedBy=multi-user.target
