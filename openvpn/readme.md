@@ -16,15 +16,15 @@ You can see documentation on MediaWiki site below.
 - https://www.enigma14.eu/wiki/OpenVPN_Linux_auto-restart
 
 ## Directory structure
-.
-├── conf_generator
-│   ├── genkey.py
-│   ├── readme.md
-│   └── vpn.yml
-└── restart
-    ├── linux
-    │   ├── openvpn-restart.service
-    │   └── restart_openvpn.py
-    └── win
-        ├── OpenVPNAutoRestart.ps1
-
+    .
+    ├── conf_generator
+    │   ├── genkey.py
+    │   ├── readme.md
+    │   └── vpn.yml
+    └── restart
+        ├── linux
+        │   ├── openvpn-restart.service
+        │   └── restart_openvpn.py
+        └── win
+            ├── OpenVPNAutoRestart.ps1
+    
