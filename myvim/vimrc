@@ -75,3 +75,4 @@ endfunction
 "
 " asyncrun now has an option for opening quickfix automatically
 let g:asyncrun_open = 15
+set hlsearch
