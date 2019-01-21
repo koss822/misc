@@ -16,7 +16,7 @@ see gpl.txt
 ## Installation in a nutshell
 
 1. Sudo as root
-    rpi ~$ sudo -i
+```rpi ~$ sudo -i```
 2. Install pip
     rpi ~# apt-get install pip
 3. Copy all files to /usr/local/ws
