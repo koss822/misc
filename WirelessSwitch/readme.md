@@ -16,16 +16,22 @@ see gpl.txt
 ## Installation in a nutshell
 
 1. Sudo as root
+
 ```rpi ~$ sudo -i```
 2. Install pip
-    rpi ~# apt-get install pip
+
+```rpi ~# apt-get install pip```
 3. Copy all files to /usr/local/ws
-    rpi ~# git clone https://github.com/koss822/misc.git
-    rpi ~# mkdir -p /usr/local/ws
-    rpi ~# cp ~/misc/WirelessSwitch /usr/local/ws
+```
+rpi ~# git clone https://github.com/koss822/misc.git
+rpi ~# mkdir -p /usr/local/ws
+rpi ~# cp ~/misc/WirelessSwitch /usr/local/ws
+```
 4. Install python packages
-    rpi ~# cd /usr/local/ws
-    rpi /usr/local/ws# pip install -r requirements.txt
+```
+rpi ~# cd /usr/local/ws
+rpi /usr/local/ws# pip install -r requirements.txt
+```
 5. Modify install/ifup.sh to your network requirements
     rpi ~# vi /usr/local/ws/install/ifup.sh
     change 192.168.0.1 -> your local lan network gateway
