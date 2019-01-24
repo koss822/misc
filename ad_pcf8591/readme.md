@@ -24,6 +24,8 @@ Please use Voltage Divider Calculator ( http://www.daycounter.com/Calculators/Vo
 
 For measuring voltage the best is to use quick2wire ( https://github.com/quick2wire/quick2wire-python-api ) api library combined it with my prepared example https://github.com/koss822/misc/blob/master/ad_pcf8591/pcf8591read which has these options:
 
+```
 ref_voltage = 3.3
 divider = 6
+```
 where ref_voltage is standard Raspberry Pi 3.3 voltage and divider is voltage divider you selected on calculator above (in my example it is 6)
