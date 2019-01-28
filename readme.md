@@ -4,10 +4,10 @@
 https://www.enigma14.eu/wiki/
 
 ## License
-see gpl.txt
+see [gpl.txt](https://github.com/koss822/misc/blob/master/gpl.txt)
 
 ## Aws
-- **s3logs** - Few tools to upload S3 access logs to MySQL database using AWS Lambda and SQS
+- [**s3logs**](https://github.com/koss822/misc/tree/master/Aws/s3logs) - Few tools to upload S3 access logs to MySQL database using AWS Lambda and SQS
 - **http_healthcheck_reboot_lambda.py** - Simple lambda script to check availability of HTTP webserver and in case of unreachability reboot it
 
 ## Linux
