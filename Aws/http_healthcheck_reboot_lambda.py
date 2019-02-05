@@ -6,9 +6,11 @@ import boto3
 import time
 # e.g. eu-west-1
 region = 'xx-xxxx-x'
-instances = ['x-xxxxxxxxxxx']
+instanceID = 'x-xxxxxxxxxxx'
 website = 'https://www.enigma14.eu/'
 webstring = 'SearchText'
+arn = 'arn:aws:sns:eu-west-1:xxxx:xxxx'
+
 def lambda_handler(event, context):
     for i in range(0,3):
         if check_website():
@@ -25,5 +27,16 @@ def check_website():
     else:
         return False
 def reboot_instance():
-    ec2 = boto3.client('ec2', region_name=region)
-    ec2.reboot_instances(InstanceIds=instances)
+    ec2 = boto3.resource('ec2')
+    instance = ec2.Instance(instanceID)
+    instance.stop()
+    time.sleep(30)
+    try:
+        instance.stop(Force=True)
+    except:
+        pass
+    while(instance.state['Code'] != 80):
+        time.sleep(1)
+    instance.start()
+    client = boto3.client('sns')
+    client.publish(TopicArn=arn, Message='EC2 instance rebooted!')
