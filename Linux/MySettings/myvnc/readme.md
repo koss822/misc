@@ -16,7 +16,9 @@ peter@server$ apt install lxde tightvncserver
 2. Run and kill tightvnc
 ```
 peter@server$ tightvncserver
+
 Starting server on :1
+
 peter@server$ tightvncserver -kill :1
 ```
 3. Copy xstartup to .vnc and make it executable
@@ -33,17 +35,17 @@ New `X` desktop is server:10
 5. Try to connect to server:5910 with TightVNC client
 6. If it won`t work examine
 ```
-less /home/peter/.vnc/server:10.log
+peter@server$ less /home/peter/.vnc/server:10.log
 ```
 7. Kill TightVNC server
 ```
-tightvncserver -kill :10
+peter@server$ tightvncserver -kill :10
 ```
 8. Install TightVNC service
 ```
-cp ~/misc/.../tightvnc.service /etc/systemd/system/tightvnc.service
-vi /etc/systemd/system/tightvnc.service (modify username)
-systemctl start tightvnc
-systemctl enable tightvnc
+peter@server$ cp ~/misc/.../tightvnc.service /etc/systemd/system/tightvnc.service
+peter@server$ vi /etc/systemd/system/tightvnc.service (modify username)
+peter@server$ systemctl start tightvnc
+peter@server$ systemctl enable tightvnc
 ```
 9. Enjoy
