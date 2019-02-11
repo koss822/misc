@@ -1,0 +1,10 @@
+[Unit]
+Description=TightVNC Service
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/sudo -u _CHANGETHIS_TO_YOUR_USER_ /usr/bin/tightvncserver :10 -geometry 1152x864
+ExecStop=/usr/bin/sudo -u _CHANGETHIS_TO_YOUR_USER_ /usr/bin/tightvncserver -kill :10
+
+[Install]
+WantedBy=multi-user.target
