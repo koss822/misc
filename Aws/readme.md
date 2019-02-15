@@ -16,6 +16,10 @@ After that there is running SystemD daemon on Linux machine with MySQL installed
 
 Please be informed that there is no frontend - the main reason is that I find using PHPMyAdmin more universal and better because I can create directly SQL queries which I like.
 
+### Diagram
+![S3 Logs diagram](https://raw.githubusercontent.com/koss822/misc/master/imgs/s3logssmall.jpg "S3 Logs diagram")
+[large image](https://raw.githubusercontent.com/koss822/misc/master/imgs/s3logslarge.jpg)
+
 ### Installation
 
 _some image tutorial is stored in_ [imgs directory](https://github.com/koss822/misc/tree/master/Aws/s3logs/imgs)
