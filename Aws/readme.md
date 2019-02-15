@@ -18,6 +18,7 @@ Please be informed that there is no frontend - the main reason is that I find us
 
 ### Diagram
 ![S3 Logs diagram](https://raw.githubusercontent.com/koss822/misc/master/imgs/s3logssmall.jpg "S3 Logs diagram")
+
 [large image](https://raw.githubusercontent.com/koss822/misc/master/imgs/s3logslarge.jpg)
 
 ### Installation
