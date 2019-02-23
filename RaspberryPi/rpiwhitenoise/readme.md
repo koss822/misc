@@ -18,7 +18,7 @@ This project is very easy to install and realize. You can buy all components in 
 ## How to install?
 1. Follow this [Tutorial](https://www.raspberrypi.org/documentation/installation/installing-images/) and install Raspbian Lite
 2. Login to machine with username "pi" and password "raspberry"
-3. Run "curl -L http://bit.ly/rpiwhitenoise | bash"
+3. Run "curl -L http://bit.ly/rpinoise | bash"
 
 ## Note
 This installation will enable SSH server with default username and password. Either change your password with "passwd" utility or disconnect machine after installation from network.
