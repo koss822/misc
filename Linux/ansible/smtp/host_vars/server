@@ -1,0 +1,9 @@
+smtp:
+  accnt:           'forexample_gmail'
+  host:            'smtp.provider.com'
+  user:            'user@yourserver.com'
+  pass:            'yourpassword'
+  from:            'user@yourserver.com'
+  fname:           'FROM USER EMAIL'
+  
+rootalias:         'your@emailaddress.com'

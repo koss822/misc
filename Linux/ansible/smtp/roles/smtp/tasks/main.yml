@@ -1,0 +1,50 @@
+---
+- name: SMTP installation
+  apt: name={{ item }} state=present update_cache=yes cache_valid_time=2592000 # cache is valid 1 month
+  with_items:
+    - postfix
+    - mailutils
+  
+- name: Alias for root
+  lineinfile: "dest=/etc/aliases state=present regexp='^root' line='root: {{ rootalias }}'"
+
+- name: Set-up outgoing SMTP server, step 1
+  template: src=postfix-main.cf.j2 dest=/etc/postfix/main.cf owner=postfix group=postfix mode=0644
+  notify: Postfix reload
+
+- name: Set-up outgoing SMTP server, step 2
+  template: src=postfix-sasl_passwd.j2 dest=/etc/postfix/sasl_passwd group=postfix mode=0644
+  register: sasl_passwd
+  notify: Postfix reload
+  
+- name: Set-up outgoing SMTP server, step 3
+  file: dest=/etc/postfix mode=755 owner=postfix group=postfix state=directory
+  notify: Postfix reload
+  
+- name: Set-up outgoing SMTP server, step 4
+  command: postmap /etc/postfix/sasl_passwd
+  when: sasl_passwd.changed
+  notify: Postfix reload
+  
+- name: Set-up outgoing SMTP server, step 5
+  command: postmap /etc/postfix/sasl_passwd
+  when: sasl_passwd.changed
+  notify: Postfix reload
+  
+- name: Set-up outgoing SMTP server, step 6
+  template: src=sender_canonical_maps.j2 dest=/etc/postfix/sender_canonical_maps owner=postfix group=postfix mode=0644
+  notify: Postfix reload
+  
+- name: Set-up outgoing SMTP server, step 7
+  template: src=header_check.j2 dest=/etc/postfix/header_check owner=postfix group=postfix mode=0644
+  notify: Postfix reload
+
+- name: Set-up outgoing SMTP server, step 8
+  template: src=virtual.j2 dest=/etc/postfix/virtual owner=postfix group=postfix mode=0644
+  notify: Postfix reload
+  register: pf_virtual
+
+- name: Set-up outgoing SMTP server, step 9
+  command: postmap /etc/postfix/virtual
+  when: pf_virtual.changed
+  notify: Postfix reload  
