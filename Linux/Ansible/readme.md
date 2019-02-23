@@ -18,6 +18,8 @@ host_vars/server
 ```
 rename this file to name of your server hostname and edit it's values to correct SMTP settings
 
-### Run
+### Run / Install
+```
 sudo pip3 install ansible
 ansible-playbook smtp.yml
+```
