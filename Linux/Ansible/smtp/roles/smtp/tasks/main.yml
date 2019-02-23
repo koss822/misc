@@ -1,9 +1,14 @@
 ---
 - name: SMTP installation
-  apt: name={{ item }} state=present update_cache=yes cache_valid_time=2592000 # cache is valid 1 month
-  with_items:
-    - postfix
-    - mailutils
+  apt:
+    name="{{ packages }}"
+    state=present
+    update_cache=yes
+    cache_valid_time=2592000 # cache is valid 1 month
+  vars:
+    packages:
+      - 'postfix'
+      - 'mailutils'
   
 - name: Alias for root
   lineinfile: "dest=/etc/aliases state=present regexp='^root' line='root: {{ rootalias }}'"
