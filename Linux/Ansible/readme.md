@@ -4,6 +4,9 @@
 
 This scripts enable you to use for example one GMail account for all outcoming SMTP e-mail from server using postfix. It also sends all mail destined to root mailbox to your email. It is very usefull when you have server and have some programs which uses e.g. mail command to send outgoing email. It rewrites FROM address (neccesary if you use foreign SMTP server for just one email mailbox) and destine email to foreign SMTP server.
 
+### Asciinema tutorial on clean Ubuntu 18.04 machine
+[![asciicast](https://asciinema.org/a/229978.svg)](https://asciinema.org/a/229978)
+
 ### Set-up
 
 Edit these files

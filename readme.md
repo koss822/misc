@@ -15,6 +15,9 @@ see [gpl.txt](https://github.com/koss822/misc/blob/master/gpl.txt)
 - [**mygit**](https://github.com/koss822/misc/tree/master/Linux/MySettings/mygit) - allow caching password in memory, basic gitignore file for VIM editor, shell prompt settings for Bash
 - [**myvim**](https://github.com/koss822/misc/tree/master/Linux/MySettings/myvim) - my VIM configuration, optimized for Python development
 - [**myvnc**](https://github.com/koss822/misc/tree/master/Linux/MySettings/myvnc) - my TightVNC configuration for Lubuntu or other Ubuntu versions, tested on 18.04 with LXDE
+### [Ansible](https://github.com/koss822/misc/tree/master/Linux/Ansible)
+- [**smtp**](https://github.com/koss822/misc/tree/master/Linux/Ansible/smtp) - tutorial how to set-up SMTP relay with Ansible on Ubuntu 18.04
+[![asciicast](https://asciinema.org/a/229978.svg)](https://asciinema.org/a/229978)
 
 ### [Projects](https://github.com/koss822/misc/tree/master/Linux/Projects)
 - [**openvpn**](https://github.com/koss822/misc/tree/master/Linux/Projects/openvpn) - OpenVPN generator of configuration and keys based on single YAML file. There are also attached tools for automatic restart of OpenVPN client on Windows and Linux systems
