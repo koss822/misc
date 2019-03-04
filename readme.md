@@ -20,7 +20,6 @@ see [gpl.txt](https://github.com/koss822/misc/blob/master/gpl.txt)
 ### [Ansible](https://github.com/koss822/misc/tree/master/Linux/Ansible)
 ![Logo](https://raw.githubusercontent.com/koss822/misc/master/imgs/logos/ansible.jpg "Ansible logo")
 - [**smtp**](https://github.com/koss822/misc/tree/master/Linux/Ansible/smtp) - tutorial how to set-up SMTP relay with Ansible on Ubuntu 18.04
-[![asciicast](https://asciinema.org/a/229978.svg)](https://asciinema.org/a/229978)
 
 ### [Projects](https://github.com/koss822/misc/tree/master/Linux/Projects)
 ![Logo](https://raw.githubusercontent.com/koss822/misc/master/imgs/logos/openvpn.jpg "OpenVPN logo")
