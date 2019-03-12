@@ -1,4 +1,4 @@
-# Enigma guy's repository
+# Martin Konicek's repository
 
 ## [Aws](https://github.com/koss822/misc/tree/master/Aws)
 ![Logo](https://raw.githubusercontent.com/koss822/misc/master/imgs/logos/aws.jpg "AWS logo")
