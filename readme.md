@@ -1,11 +1,5 @@
 # Enigma guy's repository
 
-## Project website
-https://www.enigma14.eu/wiki/
-
-## License
-see [gpl.txt](https://github.com/koss822/misc/blob/master/gpl.txt)
-
 ## [Aws](https://github.com/koss822/misc/tree/master/Aws)
 ![Logo](https://raw.githubusercontent.com/koss822/misc/master/imgs/logos/aws.jpg "AWS logo")
 - [**s3logs**](https://github.com/koss822/misc/tree/master/Aws/s3logs) - Few tools to upload S3 access logs to MySQL database using AWS Lambda and SQS
@@ -35,4 +29,14 @@ see [gpl.txt](https://github.com/koss822/misc/blob/master/gpl.txt)
 - [**rpiwhitenoise**](https://github.com/koss822/misc/tree/master/RaspberryPi/rpiwhitenoise) - Tools for generating whitenoise (FAN) on RaspberryPi
 
 ## [imgs](https://github.com/koss822/misc/tree/master/imgs)
-Various images and screenshots 
+Various images and screenshots
+
+## About
+- **Author**: Martin Konicek
+- **Contact**: martin [at] enigma14 [dot] eu
+- **Website**: [www.enigma14.eu](https://www.enigma14.eu/)
+
+## License
+see [gpl.txt](https://github.com/koss822/misc/blob/master/gpl.txt)
+
+
