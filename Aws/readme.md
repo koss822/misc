@@ -8,6 +8,10 @@ When you create this Lambda script in AWS you should trigger it by _CloudWatch E
 
 It is also needed to increase timeout for this script - recommended value is 10 minutes but might be lower.
 
+## [AWS APC Ups state of lose power publisher](https://github.com/koss822/misc/blob/master/Aws/apcupsarn/)
+
+I was solving issue that I wanted to know when my UPS lose and restore power. First idea was to use some kind of e-mail but it is very difficult to configure to pass your message through SPAM folder etc. Using SNS (Simple Notification Service) within AWS is so much more easier. You just use Python three liner to publish message to ARN queue and then SNS publish it to your e-mail, SMS or whatever of your choice.
+
 ## [S3Logs](https://github.com/koss822/misc/tree/master/Aws/s3logs)
 
 This tools watches logs directory where are the S3 Logs files stored with Lambda script located in _aws_ directory and when there is triggered S3 bucket event - _ObjectCreated_ on directory where S3 logs are stored the lambda script creates the message in SQS (Simple Queue Service) and delete log file.
