@@ -10,6 +10,10 @@ I also had an issue that VPNs sometimes crashed and stopped working so I created
 
 You can see documentation on MediaWiki site below.
 
+# Sketch
+
+![Sketch](https://raw.githubusercontent.com/koss822/misc/master/imgs/sketches/openvpn01.jpg "OpenVPN sketch")
+
 ## Links
 - https://www.enigma14.eu/wiki/OpenVPN_config_generator
 - https://www.enigma14.eu/wiki/OpenVPN_Windows_auto-restart
