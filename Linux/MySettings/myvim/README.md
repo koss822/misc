@@ -4,7 +4,7 @@
 ![VIM screenshot](https://raw.githubusercontent.com/koss822/misc/master/imgs/vim-screenshot.png "VIM Screenshot")
 
 ## Ubuntu installation
-curl http://bit.ly/martinsvim | sudo bash
+curl https://raw.githubusercontent.com/koss822/misc/master/Linux/MySettings/myvim/ubuntu_install.sh | sudo bash
 
 ## Documentation
 
