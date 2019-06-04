@@ -35,7 +35,7 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-colo darkblue
+colo koehler
 syntax on
 highlight Comment ctermfg=green
 set laststatus=2
@@ -76,3 +76,8 @@ endfunction
 " asyncrun now has an option for opening quickfix automatically
 let g:asyncrun_open = 15
 set hlsearch
+autocmd BufRead,BufNewFile *.deckspec set filetype=yaml
+
+" Powershell
+:let g:ps1_nofold_blocks = 1
+:let g:ps1_nofold_sig = 1
