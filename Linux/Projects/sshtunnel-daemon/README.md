@@ -10,6 +10,20 @@
 
 ## Settings
 
+~~~~
+main:
+  listen: 0.0.0.0
+tunnels:
+  - remote: username@remote_ip
+    ports:
+      # ssh
+      - local: 2000 # This has to match docker-compose file
+        remote_target: localhost
+        remote_port: 22
+~~~~
+
+## Installation
+
 1. Install Ubuntu (or other Linux)
 
 2. Install docker
