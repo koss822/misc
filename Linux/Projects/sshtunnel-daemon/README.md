@@ -8,6 +8,8 @@
 * Easy configuration (YAML)
 * Easy and secure installation (Docker)
 
+## Settings
+
 1. Install Ubuntu (or other Linux)
 
 2. Install docker
