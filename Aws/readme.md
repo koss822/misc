@@ -8,6 +8,9 @@ When you create this Lambda script in AWS you should trigger it by _CloudWatch E
 
 It is also needed to increase timeout for this script - recommended value is 10 minutes but might be lower.
 
+### Diagram
+![HTTP Health Check](https://raw.githubusercontent.com/koss822/misc/master/imgs/http_health_check.png "HTTP Health Check diagram")
+
 ## [AWS APC Ups state of lose power publisher](https://github.com/koss822/misc/blob/master/Aws/apcupsarn/)
 
 I was solving issue that I wanted to know when my UPS lose and restore power. First idea was to use some kind of e-mail but it is very difficult to configure to pass your message through SPAM folder etc. Using SNS (Simple Notification Service) within AWS is so much more easier. You just use Python three liner to publish message to ARN queue and then SNS publish it to your e-mail, SMS or whatever of your choice.
