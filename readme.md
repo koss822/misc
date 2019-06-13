@@ -4,6 +4,7 @@
 ![Logo](https://raw.githubusercontent.com/koss822/misc/master/imgs/logos/aws.jpg "AWS logo")
 - [**s3logs**](https://github.com/koss822/misc/tree/master/Aws/s3logs) - Few tools to upload S3 access logs to MySQL database using AWS Lambda and SQS
 - [**http_healthcheck_reboot_lambda.py**](https://github.com/koss822/misc/blob/master/Aws/http_healthcheck_reboot_lambda.py) - Simple lambda script to check availability of HTTP webserver and in case of unreachability reboot it
+- [**APC_UPS**](https://github.com/koss822/misc/blob/master/Aws/apcupsarn/) - Script for sending alerts when there is a power outage through AWS SNS to your Email or Mobile
 
 ## [Linux](https://github.com/koss822/misc/tree/master/Linux)
 ![Logo](https://raw.githubusercontent.com/koss822/misc/master/imgs/logos/linux.jpg "Linux logo")
