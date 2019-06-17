@@ -12,7 +12,7 @@ You can see documentation on MediaWiki site below.
 
 # Sketch
 
-![Sketch](https://raw.githubusercontent.com/koss822/misc/master/imgs/sketches/openvpn01.jpg "OpenVPN sketch")
+![Sketch](https://raw.githubusercontent.com/koss822/misc/master/imgs/openvpn.png "OpenVPN diagram")
 
 ## Links
 - https://www.enigma14.eu/wiki/OpenVPN_config_generator
