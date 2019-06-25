@@ -1,7 +1,8 @@
 ---
 # ansible-playbook smtp.yml
 - name: SMTP installation
-  hosts: myhosts
+  hosts: localhost
+  connection: local
   become: yes
   roles:
   - smtp
