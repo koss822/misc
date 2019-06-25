@@ -3,7 +3,7 @@
 ## SMTP Relay which changes FROM field and Send system mails using GMail or other freemail account
 
 ### Diagram
-![SMTP Relay](https://raw.githubusercontent.com/koss822/misc/master/imgs/smtp_relay.png "SMTP Relay diagram")
+![SMTP Relay](https://github.com/koss822/misc/raw/master/imgs/smtprelay.png "SMTP Relay diagram")
 
 ### What it does?
 
