@@ -1,6 +1,6 @@
 #!/bin/bash -x
 # usb_backup.sh - see README.md
-# https://github.com/koss822/misc/usb_backup
+# https://github.com/koss822/misc/Linux/Projects/usb_backup
 # ========================================================================
 # GNU GENERAL PUBLIC LICENSE - http://www.gnu.org/licenses/gpl-3.0.en.html
 # Author martin@enigma14.eu
