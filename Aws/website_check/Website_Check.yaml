@@ -1,0 +1,61 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Parameters: 
+  region: 
+    Type: String
+    Default: eu-west-1
+  instanceID:
+    Type: String
+    Default: i-xxxxx
+  website:
+    Type: String
+    Default: 'https://www.enigma14.eu/wiki/'
+  webstring:
+    Type: String
+    Default: Raspberry
+  snsarn:
+    Type: String
+    Default: 'arn:aws:sns:eu-west-1:xxxxxx:XXXXX'
+Resources:
+  WebsiteCheckFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.6
+      CodeUri: s3://enigma14-public/Website_Check-44ac5b41-e079-47b2-90bf-a5861831f5fa.zip
+      Description: ''
+      MemorySize: 128
+      Timeout: 600
+      Role: !GetAtt WebsiteCheckRole.Arn
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: rate(1 hour)
+      Environment:
+        Variables:
+          region: !Ref region
+          instanceID: !Ref instanceID
+          website: !Ref website
+          webstring: !Ref webstring
+          snsarn: !Ref snsarn
+          
+  WebsiteCheckRole:
+    Type: AWS::IAM::Role
+    Properties:
+      ManagedPolicyArns: 
+        - "arn:aws:iam::831210272270:policy/ReadOnly_and_EC2_basic"
+        - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        - "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
+      AssumeRolePolicyDocument: 
+        Version: "2012-10-17"
+        Statement: 
+          - 
+            Effect: "Allow"
+            Principal: 
+              Service: 
+                - "lambda.amazonaws.com"
+            Action: 
+              - "sts:AssumeRole"
+      Path: "/"
