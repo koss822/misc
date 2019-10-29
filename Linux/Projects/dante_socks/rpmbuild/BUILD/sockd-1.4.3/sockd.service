@@ -1,0 +1,7 @@
+[Unit]
+Description=Sockd Service
+[Service]
+Type=normal
+ExecStart=/usr/local/sbin/sockd
+[Install]
+WantedBy=multi-user.target
