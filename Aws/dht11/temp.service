@@ -1,0 +1,7 @@
+[Unit]
+Description=Temp Service
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/temp.py
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,8 @@
+---
+sensor_pin:  17
+namespace:   'DHT11'
+access_key:  'AWS_ACCESS_KEY'
+secret_key:  'AWS_SECRET_KEY'
+region:      'eu-west-1'
+log_group:   'temperature'
+log_stream:  'rpi1'
