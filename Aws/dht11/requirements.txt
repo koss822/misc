@@ -1,0 +1,3 @@
+boto3
+Adafruit_DHT
+pyyaml

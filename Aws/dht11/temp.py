@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 ################################################################################
-# www.circuitbasics.com/how-to-set-up-the-dht11-humidity-sensor-on-the-raspberry-pi/
+# Martin Konicek (c) 2019
+# GNU/GPL
+# mkonicek12@gmail.com
 ################################################################################
 import sys
 import Adafruit_DHT
 import time
 import boto3
 import yaml
-from botocore.exceptions import ClientError
 from sys import stdout
 
+# Read and assign data from config file
 CONFIG='/etc/temp.yaml'
 data = yaml.load(open(CONFIG, 'r'), Loader=yaml.Loader)
 
@@ -21,11 +23,10 @@ REGION=data['region']
 LOG_GROUP=data['log_group']
 LOG_STREAM=data['log_stream']
 
-
+# Disable output console caching to see immediately logs in journal
 def write_flush(args, w=stdout.write):
     w(args)
     stdout.flush()
-
 
 def boto3_client(service):
     return boto3.client(
@@ -84,33 +85,23 @@ def start_logging():
 def log_data(data):
     try:
         timestamp = int(round(time.time() * 1000))
+        logEventArgs = {
+            'logGroupName': LOG_GROUP,
+            'logStreamName': LOG_STREAM,
+            'logEvents': [
+                {
+                    'timestamp': timestamp,
+                    'message': data
+                }
+            ]
+        }
+
+        # Find last log entry to continue with next log entry
         pretoken = find_log_stream(logs.describe_log_streams(logGroupName=LOG_GROUP, logStreamNamePrefix=LOG_STREAM)['logStreams'])
-        token = pretoken['uploadSequenceToken'] if 'uploadSequenceToken' in pretoken else None
-    
-        if token:
-            response = logs.put_log_events(
-                logGroupName=LOG_GROUP,
-                logStreamName=LOG_STREAM,
-                logEvents=[
-                    {
-                        'timestamp': timestamp,
-                        'message': data
-                    }
-                ],
-                sequenceToken=token
-            )
-        else:
-            response = logs.put_log_events(
-                logGroupName=LOG_GROUP,
-                logStreamName=LOG_STREAM,
-                logEvents=[
-                    {
-                        'timestamp': timestamp,
-                        'message': data
-                    }
-                ]
-            )
-    
+        if 'uploadSequenceToken' in pretoken:
+            logEventArgs['sequenceToken'] = pretoken['uploadSequenceToken']
+
+        response = logs.put_log_events(**logEventArgs)
         print('Uploading to logs: %s' % data)
         print(response)
     except Exception as e:
@@ -118,7 +109,7 @@ def log_data(data):
         print(e)
 
 
-# START OF MAIN APP
+# Main code
 stdout.write = write_flush # Disable output buffering
 cloudwatch = boto3_client('cloudwatch')
 logs = boto3_client('logs')
@@ -134,7 +125,7 @@ while(True):
 
     except Exception as e:
         print(e)
-        if errors>2:
+        if errors>2: # If 3 reads from DHT11 sensor fails
             log_data('Error 2222: Unable to read or send data')
             log_data(e)
             errors=0
