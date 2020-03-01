@@ -2,6 +2,7 @@
 
 ## [Aws](https://github.com/koss822/misc/tree/master/Aws)
 ![Logo](https://raw.githubusercontent.com/koss822/misc/master/imgs/logos/aws.jpg "AWS logo")
+- [**dht11**](https://github.com/koss822/misc/tree/master/Aws/dht11) - (updated Feb/2020) - DHT11 utilities for Raspberry Pi which reports temperature and humidity into AWS Cloudwatch
 - [**s3logs**](https://github.com/koss822/misc/tree/master/Aws/s3logs) - Few tools to upload S3 access logs to MySQL database using AWS Lambda and SQS
 - [**HTTP HealthCheck Reboot Tool**](https://github.com/koss822/misc/blob/master/Aws/website_check/) - Simple lambda script to check availability of HTTP webserver and in case of unreachability reboot it
 - [**APC_UPS**](https://github.com/koss822/misc/blob/master/Aws/apcupsarn/) - Script for sending alerts when there is a power outage through AWS SNS to your Email or Mobile
