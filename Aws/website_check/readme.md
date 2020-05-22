@@ -16,4 +16,16 @@ I have created a CloudFormation template for you with prepublicated Lambda sourc
 
 ## [AWS APC Ups state of lose power publisher](https://github.com/koss822/misc/blob/master/Aws/apcupsarn/)
 
-I was solving issue that I wanted to know when my UPS lose and restore power. First idea was to use some kind of e-mail but it is very difficult to configure to pass your message through SPAM folder etc. Using SNS (Simple Notification Service) within AWS is so much more easier. You just use Python three liner to publish message to ARN queue and then SNS publish it to your e-mail, SMS or whatever of your choice.
+
+### Known issues
+
+Currently botocore.vendored library with requests is obsolete. I have created a requests layer with this fix. You can install layer with these commands. Don't forget to attach layer to function. I will make some better solution soon.
+
+```
+cd requests_layer/
+sudo pip3 install --target . requests
+zip -r ../requests_layer.zip .
+cd ..
+aws --profile admin --region eu-west-1 s3 cp requests_layer.zip s3://enigma14-public/
+aws --profile admin --region eu-west-1 lambda publish-layer-version --layer-name requests --content S3Bucket=enigma14-public,S3Key=requests_layer.zip --compatible-runtimes python3.8
+```
