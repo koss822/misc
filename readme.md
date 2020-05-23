@@ -25,7 +25,7 @@
 - [**dante_socks**](https://github.com/koss822/misc/tree/master/Linux/Projects/dante_socks) - Dante Socks RPM package for Dante Socks proxy installation
 
 ## [RaspberryPi](https://github.com/koss822/misc/tree/master/RaspberryPi)
-![Logo](https://raw.githubusercontent.com/koss822/misc/master/imgs/logos/rpi.jpg "Rpi logo")
+![Logo](https://raw.githubusercontent.com/koss822/misc/master/imgs/frontlogos/raspberry.png "Rpi logo")
 - [**WirelessSwitch**](https://github.com/koss822/misc/tree/master/RaspberryPi/WirelessSwitch) - Utility to switch between WiFi and 3G/4G/LTE connection on RaspberryPi in case of network failure
 - [**ad_pcf8591**](https://github.com/koss822/misc/tree/master/RaspberryPi/ad_pcf8591) - Chip for measuring voltage (mainly of 12V battery)
 - [**rpi_usb_stick**](https://github.com/koss822/misc/tree/master/RaspberryPi/rpi_usb_stick) - Raspbian settings for 3G modem Huawei E173
