@@ -1,0 +1,96 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Globals:
+  Function:
+    Timeout: 3
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Parameters:
+  OwnerTag:
+    Type: String
+    Default: "your@email.com"
+  InstanceID:
+    Type: String
+    Default: i-xxxxxxxxxx
+
+
+Resources:
+  healthCheckRebootRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Path: /
+      RoleName: healthCheckRebootRole
+      Tags:
+      - Key: "Owner"
+        Value: !Ref OwnerTag
+
+  healthCheckRebootPolicy:
+    Type: 'AWS::IAM::Policy'
+    Properties:
+      PolicyName: healthCheckRebootPolicy
+      Roles:
+        - !Ref healthCheckRebootRole
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+            Resource: !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/healthCheckReboot:*"
+          - Effect: Allow
+            Action:
+            - ec2:StartInstances
+            - ec2:StopInstances
+            Resource:
+              Fn::Sub:  
+              - "arn:aws:ec2:${AWS::Region}:${AWS::AccountId}:instance/${INSTANCEID}"
+              - INSTANCEID: !Ref InstanceID
+          - Effect: Allow
+            Action:
+            - sns:Publish
+            Resource: !Sub "arn:aws:sns:us-east-1:${AWS::AccountId}:healthCheckReboot"
+          - Effect: Allow
+            Action:
+            - ec2:DescribeInstances
+            - ec2:DescribeInstanceStatus
+            Resource: "*"
+          - Effect: Allow
+            Action:
+            - logs:CreateLogGroup
+            Resource: !Sub "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:*"
+
+
+  healthCheckRebootLambda:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: healthCheckReboot
+      Handler: healthCheckReboot.lambda_handler
+      Runtime: python3.8
+      CodeUri: healthCheckReboot/
+      Description: ''
+      MemorySize: 128
+      Timeout: 600
+      Role: !GetAtt healthCheckRebootRole.Arn
+      Environment:
+        Variables:
+          ALARM_NAME: "INSERT_ALARM_NAME"
+          INSTANCE_ID: !Ref InstanceID
+          OUTPUT_SNS_ARN: !Sub "arn:aws:sns:us-east-1:${AWS::AccountId}:healthCheckReboot"
+          REGION: !Ref AWS::Region
+    Tags:
+    - Key: "Owner"
+      Value: !Ref OwnerTag
+
+Outputs:
+  Lambda:
+    Description: Lambda Function Arn
+    Value: !GetAtt healthCheckRebootLambda.Arn
