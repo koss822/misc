@@ -46,6 +46,12 @@ aws cloudformation delete-stack --stack-name route53-healthcheck-instance-reboot
 ```
 
 ## Installation
+
+### Note to instalation
+- You need to create Route53 healthcheck and SNS topic in us-east-1 region, please keep SNS topic name on images in your installation due to cloudformation is using it and have hardcoded resource arn
+- You can install SAM application to any region
+
+### Screenshots
 ![Screenshot](https://github.com/koss822/misc/raw/master/imgs/heathcheck/healthcheck1.PNG "Route53 HealthCheckReboot screenshot")
 ![Screenshot](https://github.com/koss822/misc/raw/master/imgs/heathcheck/healthcheck2.PNG "Route53 HealthCheckReboot screenshot")
 ![Screenshot](https://github.com/koss822/misc/raw/master/imgs/heathcheck/healthcheck3.PNG "Route53 HealthCheckReboot screenshot")
