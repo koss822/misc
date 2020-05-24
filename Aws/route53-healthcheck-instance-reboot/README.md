@@ -1,5 +1,8 @@
 # route53-healthcheck-instance-reboot
 
+## Description
+This is a SAM application which watches Route53 HealthCheck and when it goes to ALARM state it reboots specified ec2 instance.
+
 ## Diagram
 ![Screenshot](https://github.com/koss822/misc/raw/master/imgs/heathcheck/route53-healthcheck-reboot.png "Route53 HealthCheckReboot screenshot")
 
