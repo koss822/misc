@@ -2,9 +2,10 @@
 
 ## [Aws](https://github.com/koss822/misc/tree/master/Aws)
 ![Logo](https://raw.githubusercontent.com/koss822/misc/master/imgs/frontlogos/aws.png "AWS logo")
+- [**route53-healthcheck-instance-reboot**](https://github.com/koss822/misc/blob/master/Aws/route53-healthcheck-instance-reboot/) - (created May/25/2020) This is a SAM application which watches Route53 HealthCheck and when it goes to ALARM state it reboots specified ec2 instance.
 - [**dht11**](https://github.com/koss822/misc/tree/master/Aws/dht11) - (updated Feb/2020) - DHT11 utilities for Raspberry Pi which reports temperature and humidity into AWS Cloudwatch
 - [**s3logs**](https://github.com/koss822/misc/tree/master/Aws/s3logs) - Few tools to upload S3 access logs to MySQL database using AWS Lambda and SQS
-- [**HTTP HealthCheck Reboot Tool**](https://github.com/koss822/misc/blob/master/Aws/website_check/) - Simple lambda script to check availability of HTTP webserver and in case of unreachability reboot it
+- [**HTTP HealthCheck Reboot Tool**](https://github.com/koss822/misc/blob/master/Aws/website_check/) - Simple lambda script to check availability of HTTP webserver and in case of unreachability reboot it. **OBSOLETE** (replaced with route53-healthcheck-instance-reboot)
 - [**APC_UPS**](https://github.com/koss822/misc/blob/master/Aws/apcupsarn/) - Script for sending alerts when there is a power outage through AWS SNS to your Email or Mobile
 
 ## [Linux](https://github.com/koss822/misc/tree/master/Linux)
