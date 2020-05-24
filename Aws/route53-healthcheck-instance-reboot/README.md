@@ -1,7 +1,7 @@
 # route53-healthcheck-instance-reboot
 
 ## Diagram
-![Screenshot](https://github.com/koss822/misc/blob/master/imgs/healthcheck/route53-healthcheck-reboot.png?raw=true "Route53 HealthCheckReboot screenshot")
+![Screenshot](https://github.com/koss822/misc/raw/master/imgs/heathcheck/route53-healthcheck-reboot.png "Route53 HealthCheckReboot screenshot")
 
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
 
