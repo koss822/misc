@@ -5,7 +5,6 @@ Summary:        Dante Socks Proxy with basic config and SystemD daemon
 BuildArch:	x86_64
 
 Group:          TecAdmin
-BuildArch:      noarch
 License:        GPL
 URL:            https://www.enigma14.eu/martin/blog/2018/02/01/dante-socks-proxy-how-to-install-and-manage-on-rhel-or-other-distros/
 Source0:        sockd-1.4.3.tar.gz
