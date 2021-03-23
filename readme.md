@@ -1,6 +1,7 @@
 # Martin Konicek's repository
 
 ## Python
+![Logo](https://raw.githubusercontent.com/koss822/misc/master/imgs/frontlogos/python.png "Python logo")
 - [**yahoo-scrapper**](https://github.com/koss822/misc/blob/master/Python/yahoo-scrapper/) - (created March/23/2021) Simple yahoo finance scraper to download financial data and convert them to currency you need (using Google Chrome and Docker)
 
 ## [Aws](https://github.com/koss822/misc/tree/master/Aws)
