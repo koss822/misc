@@ -1,0 +1,6 @@
+[google]
+name=Google - $basearch
+baseurl=http://dl.google.com/linux/rpm/stable/$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub

@@ -1,5 +1,8 @@
 # Martin Konicek's repository
 
+## Python
+- [**yahoo-scrapper**](https://github.com/koss822/misc/blob/master/Python/yahoo-scrapper/) - (created March/23/2021) Simple yahoo finance scraper to download financial data and convert them to currency you need (using Google Chrome and Docker)
+
 ## [Aws](https://github.com/koss822/misc/tree/master/Aws)
 ![Logo](https://raw.githubusercontent.com/koss822/misc/master/imgs/frontlogos/aws.png "AWS logo")
 - [**route53-healthcheck-instance-reboot**](https://github.com/koss822/misc/blob/master/Aws/route53-healthcheck-instance-reboot/) - (created May/25/2020) This is a SAM application which watches Route53 HealthCheck and when it goes to ALARM state it reboots specified ec2 instance.
