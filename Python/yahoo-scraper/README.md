@@ -3,7 +3,7 @@
 Simple yahoo finance scraper to download financial data and convert them to currency you need (using Google Chrome and Docker)
 
 ## Diagram
-(https://raw.githubusercontent.com/koss822/misc/master/imgs/logos/yahoo-scraper-diagram.png "Yahoo scraper diagram")
+![Screenshot](https://raw.githubusercontent.com/koss822/misc/master/imgs/logos/yahoo-scraper-diagram.png "Yahoo scraper diagram")
 
 ## Installation
 1. Download chromium (see readme in bin)
