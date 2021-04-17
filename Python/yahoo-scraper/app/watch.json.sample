@@ -1,0 +1,9 @@
+{
+    "stocks": [
+        {
+            "name": "iShares SP500",
+            "symbol": "CSSPX.MI",
+            "currency": "eurczk",
+            "count": 1
+        }
+}
