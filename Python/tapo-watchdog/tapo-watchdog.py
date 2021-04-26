@@ -31,14 +31,17 @@ def restart():
 
 errors = 0
 while True:
-    time.sleep(10)
-    print("pinging")
-    response = ping("8.8.8.8", count=1)
-    print(response)
-    if "timed" in repr(response):
-        errors += 1
-        if errors > 3:
-            restart()
+    try:
+        time.sleep(10)
+        print("pinging")
+        response = ping("8.8.8.8", count=1)
+        print(response)
+        if "timed" in repr(response):
+            errors += 1
+            if errors > 3:
+                restart()
+                errors = 0
+        else:
             errors = 0
-    else:
-        errors = 0
+    except:
+        pass
