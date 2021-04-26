@@ -4,30 +4,38 @@ from PyP100 import PyP100
 import time
 import sys
 
+
 class Unbuffered(object):
-   def __init__(self, stream):
-       self.stream = stream
-   def write(self, data):
-       self.stream.write(data)
-       self.stream.flush()
-   def writelines(self, datas):
-       self.stream.writelines(datas)
-       self.stream.flush()
-   def __getattr__(self, attr):
-       return getattr(self.stream, attr)
+    def __init__(self, stream):
+        self.stream = stream
+
+    def write(self, data):
+        self.stream.write(data)
+        self.stream.flush()
+
+    def writelines(self, datas):
+        self.stream.writelines(datas)
+        self.stream.flush()
+
+    def __getattr__(self, attr):
+        return getattr(self.stream, attr)
+
 
 sys.stdout = Unbuffered(sys.stdout)
 
+
 def restart():
-    p100 = PyP100.P100("IP", "EMAIL@gmail.com", "PASS") #Creating a P100 plug object
+    # Creating a P100 plug object
+    p100 = PyP100.P100("IP", "EMAIL@gmail.com", "PASS")
 
-    p100.handshake() #Creates the cookies required for further methods
-    p100.login() #Sends credentials to the plug and creates AES Key and IV for further methods
+    p100.handshake()  # Creates the cookies required for further methods
+    p100.login()  # Sends credentials to the plug and creates AES Key and IV for further methods
 
-    p100.turnOff() #Sends the turn off request
+    p100.turnOff()  # Sends the turn off request
     time.sleep(5)
-    p100.turnOn() #Sends the turn on request
-    time.sleep(3600) # wait one hour before next restart
+    p100.turnOn()  # Sends the turn on request
+    time.sleep(3600)  # wait one hour before next restart
+
 
 errors = 0
 while True:
@@ -43,5 +51,5 @@ while True:
                 errors = 0
         else:
             errors = 0
-    except:
+    except Exception:
         pass
