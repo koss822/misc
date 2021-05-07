@@ -1,8 +1,14 @@
 #!/usr/bin/python3
-from pythonping import ping
-from PyP100 import PyP100
-import time
+import json
 import sys
+import time
+
+from PyP100 import PyP100
+from pythonping import ping
+
+CONFIG = "/etc/tapo-config.json"
+with open(CONFIG) as config:
+    cfg = json.load(config)
 
 
 class Unbuffered(object):
@@ -21,35 +27,56 @@ class Unbuffered(object):
         return getattr(self.stream, attr)
 
 
-sys.stdout = Unbuffered(sys.stdout)
+def wait_time(minutes):
+    for i in range(minutes):
+        left = minutes-i
+        print(f"{left} minutes left before resuming operation")
+        time.sleep(60)
+
+
+def p100_login():
+    # Creating a P100 plug object
+    p100 = PyP100.P100(cfg['SOCKET'], cfg['USER'], cfg['PASS'])
+    p100.handshake()  # Creates the cookies required for further methods
+    p100.login()  # Sends credentials to the plug and creates AES Key and IV for further methods
+    return p100
+
+
+def start():
+    time.sleep(10)
+    print("Powering ON...")
+    p100 = p100_login()
+    p100.turnOn()  # Sends the turn on request
 
 
 def restart():
-    # Creating a P100 plug object
-    p100 = PyP100.P100("IP", "EMAIL@gmail.com", "PASS")
-
-    p100.handshake()  # Creates the cookies required for further methods
-    p100.login()  # Sends credentials to the plug and creates AES Key and IV for further methods
-
+    print("Restarting 5G...")
+    p100 = p100_login()
     p100.turnOff()  # Sends the turn off request
     time.sleep(5)
     p100.turnOn()  # Sends the turn on request
-    time.sleep(3600)  # wait one hour before next restart
+    resume = False
 
 
+sys.stdout = Unbuffered(sys.stdout)
+resume = True
 errors = 0
+
+start()  # Make sure device is initially powered on
+
 while True:
     try:
         time.sleep(10)
         print("pinging")
-        response = ping("8.8.8.8", count=1)
+        response = ping(cfg['FQDN'], count=1)
         print(response)
         if "timed" in repr(response):
             errors += 1
-            if errors > 3:
+            if errors > int(int(cfg['WAIT'])/10) and resume:
                 restart()
                 errors = 0
         else:
             errors = 0
-    except Exception:
-        pass
+            resume = True
+    except Exception as ex:
+        print(f"EXCEPTION: {repr(ex)}")
