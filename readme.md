@@ -3,6 +3,7 @@
 ## Python
 ![Logo](https://raw.githubusercontent.com/koss822/misc/master/imgs/frontlogos/python.png "Python logo")
 - [**yahoo-scraper**](https://github.com/koss822/misc/blob/master/Python/yahoo-scraper/) - (created March/23/2021) Simple yahoo finance scraper to download financial data and convert them to currency you need (using Google Chrome and Docker)
+- [**tapo-watchdog**](https://github.com/koss822/misc/blob/master/Python/tapo-watchdog/) - (created May/7/2021) Sometimes modem stop responding and you need to restart it. For this purpose I have created an automation which uses TP-Link Tapo P100 power socket to reboot modem 
 
 ## [Aws](https://github.com/koss822/misc/tree/master/Aws)
 ![Logo](https://raw.githubusercontent.com/koss822/misc/master/imgs/frontlogos/aws.png "AWS logo")
