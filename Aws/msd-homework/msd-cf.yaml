@@ -1,0 +1,88 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Description: MSD Homework
+
+Parameters:
+  S3BucketName:
+    Description: S3 bucket that has the zip package
+    Type: String
+    Default: s3.enigma14.eu
+
+  S3BucketKey:
+    Description: S3 Key that has the zip package
+    Type: String
+    Default: msd/package.zip
+Resources:
+  MSDRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: "/"
+
+  MSDPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: MSDPolicy
+      Roles:
+        - !Ref MSDRole
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Resource: "arn:aws:logs:*:*:*"
+          - Effect: Allow
+            Action:
+              - "s3:GetObject"
+              - "s3:PutObject"
+              - "s3:PutObjectAcl"
+            Resource:
+              - "arn:aws:s3:::s3.enigma14.eu/msd/*"
+
+          - Effect: Allow
+            Action: s3:ListBucket
+            Resource: arn:aws:s3:::s3.enigma14.eu
+
+  MSDFunction:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      Handler: msd.lambda_handler
+      Layers:
+        - arn:aws:lambda:eu-west-1:831210272270:layer:requests:3
+      Role: !GetAtt MSDRole.Arn
+      Code:
+        S3Bucket: !Ref S3BucketName
+        S3Key: !Ref S3BucketKey
+      Runtime: python3.8
+      Timeout: "10"
+      MemorySize: 1024
+      FunctionName: msd
+
+  InvokeLambdaPermissionMSD:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      FunctionName: !GetAtt MSDFunction.Arn
+      Action: "lambda:InvokeFunction"
+      Principal: events.amazonaws.com
+      SourceArn: !GetAtt MSDSchedulerHourlyRule.Arn
+
+  MSDSchedulerHourlyRule:
+    Type: "AWS::Events::Rule"
+    Properties:
+      ScheduleExpression: cron(15 * * * ? *)
+      Name: MSDSchedulerHourlyRule
+      State: ENABLED
+      Targets:
+        - Id: MSDSchedulerHourlyScheduler
+          Arn: !GetAtt MSDFunction.Arn
