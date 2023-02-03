@@ -1,5 +1,13 @@
 # AWS scripts and tools
 
+## [s3 upload](https://github.com/koss822/misc/blob/master/Aws/s3upload/)
+### Description
+This simple python utility will add right-click context menu to every file to upload it to S3 and make it public. Once you click on the file it will be uploaded and you will be provided a public link. Usefull for sharing images and other files.
+
+### Screenshot
+![Screenshot](https://github.com/koss822/misc/raw/master/imgs/s3upload-context-menu.png "S3 Upload context menu")
+![Screenshot](https://github.com/koss822/misc/raw/master/imgs/s3upload-dialog.png "S3 Upload dialog")
+
 ## [route53-healthcheck-instance-reboot](https://github.com/koss822/misc/blob/master/Aws/route53-healthcheck-instance-reboot/)
 ### Description
 This is a SAM application which watches Route53 HealthCheck and when it goes to ALARM state it reboots specified ec2 instance.

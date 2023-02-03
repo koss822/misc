@@ -1,0 +1,7 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\Upload to S3]
+@="Upload to S3"
+
+[HKEY_CLASSES_ROOT\*\shell\Upload to S3\command]
+@="\"C:\\PATH_TO_PYTHON\\pythonw.exe\" \"C:\\PATH_TO_SCRIPT\\s3upload\\s3upload.pyw\" \"%1\""
