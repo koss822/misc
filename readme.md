@@ -1,5 +1,9 @@
 # Martin Konicek's repository
 
+## About
+Reliable and trustworthy B2B DevOps services
+see https://www.martinkonicek.eu/
+
 ## Docker & Kubernetes
 ![Logo](https://raw.githubusercontent.com/koss822/misc/master/imgs/frontlogos/moby-logo.png "Docker logo")
 - [**docker-selenium-firefox**](https://github.com/koss822/misc/blob/master/Docker/selenium-firefox) - (created June/19/2022) Docker image for headless scrapping with Python, Selenium and Firefox
@@ -43,11 +47,6 @@
 
 ## [imgs](https://github.com/koss822/misc/tree/master/imgs)
 Various images and screenshots
-
-## About
-- **Author**: Martin Konicek
-- **Contact**: martin [at] enigma14 [dot] eu
-- **Website**: [www.enigma14.eu](https://www.enigma14.eu/)
 
 ## License
 see [gpl.txt](https://github.com/koss822/misc/blob/master/gpl.txt)
