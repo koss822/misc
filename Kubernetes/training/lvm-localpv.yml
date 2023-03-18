@@ -35,7 +35,7 @@ lvmNode:
   podAnnotations: {}
   # This can be configured to run on various different k8s distributions like
   # microk8s where kubelet dir is different
-  kubeletDir: "/var/lib/kubelet/"
+  kubeletDir: "/var/snap/microk8s/common/var/lib/kubelet/"
   resources: {}
 #    limits:
 #      cpu: 10m
@@ -168,3 +168,4 @@ serviceAccount:
 
 analytics:
   enabled: true
+
