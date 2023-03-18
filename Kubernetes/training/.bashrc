@@ -119,3 +119,5 @@ fi
 alias kubectl="microk8s kubectl"
 alias helm="microk8s helm"
 alias kubeinit="~/misc/Kubernetes/training/kubeinit.sh"
+cd ~/misc
+git pull
