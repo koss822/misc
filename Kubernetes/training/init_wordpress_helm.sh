@@ -8,7 +8,7 @@ else
     # Get public DNS of EC2 instance
     PUBLIC_DNS=$(curl -s http://169.254.169.254/latest/meta-data/public-hostname)
 
-    cp ~/misc/Kubernetes/training/wordpress.yml /tmp/wordpress.yml
+    cp /home/ubuntu/misc/Kubernetes/training/wordpress.yml /tmp/wordpress.yml
     
     # Replace "HOSTREPLACE" with public DNS in wordpress.yml
     sed -i "s/HOSTREPLACE/$PUBLIC_DNS/g" /tmp/wordpress.yml
