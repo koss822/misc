@@ -1,0 +1,10 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: openebs-lvm
+parameters:
+  storage: lvm
+  volgroup: kube-data
+provisioner: local.csi.openebs.io
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
