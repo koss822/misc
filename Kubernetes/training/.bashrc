@@ -119,3 +119,4 @@ fi
 alias kubectl="microk8s kubectl"
 alias helm="microk8s helm"
 ~/misc/Kubernetes/training/init_data_volume.sh
+~/misc/Kubernetes/training/init_wordpress_helm.sh

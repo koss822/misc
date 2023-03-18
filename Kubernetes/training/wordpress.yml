@@ -73,7 +73,7 @@ diagnosticMode:
 image:
   registry: docker.io
   repository: bitnami/wordpress
-  tag: 6.1.1-debian-11-r66
+  tag: 6.1.1-debian-11-r57
   digest: ""
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -103,7 +103,7 @@ wordpressUsername: user
 ## @param wordpressPassword WordPress user password
 ## Defaults to a random 10-character alphanumeric string if not set
 ##
-wordpressPassword: ""
+wordpressPassword: "pass4001"
 ## @param existingSecret Name of existing secret containing WordPress credentials
 ## NOTE: Must contain key `wordpress-password`
 ## NOTE: When it's set, the `wordpressPassword` parameter is ignored
@@ -588,7 +588,7 @@ service:
 ingress:
   ## @param ingress.enabled Enable ingress record generation for WordPress
   ##
-  enabled: false
+  enabled: true
   ## @param ingress.pathType Ingress path type
   ##
   pathType: ImplementationSpecific
@@ -602,7 +602,7 @@ ingress:
   ingressClassName: ""
   ## @param ingress.hostname Default host for the ingress record
   ##
-  hostname: wordpress.local
+  hostname: "HOSTREPLACE"
   ## @param ingress.path Default path for the ingress record
   ## NOTE: You may need to set this to '/*' in order to use this with ALB ingress controllers
   ##
@@ -709,7 +709,7 @@ persistence:
   ## If set to "-", storageClassName: "", which disables dynamic provisioning
   ## If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner
   ##
-  storageClass: ""
+  storageClass: "openebs-lvm"
   ## @param persistence.accessModes [array] Persistent Volume access modes
   ##
   accessModes:
@@ -719,7 +719,7 @@ persistence:
   accessMode: ReadWriteOnce
   ## @param persistence.size Persistent Volume size
   ##
-  size: 10Gi
+  size: 1Gi
   ## @param persistence.dataSource Custom PVC data source
   ##
   dataSource: {}
@@ -757,7 +757,7 @@ volumePermissions:
   image:
     registry: docker.io
     repository: bitnami/bitnami-shell
-    tag: 11-debian-11-r96
+    tag: 11-debian-11-r92
     digest: ""
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
@@ -851,7 +851,7 @@ metrics:
   image:
     registry: docker.io
     repository: bitnami/apache-exporter
-    tag: 0.13.0-debian-11-r7
+    tag: 0.13.0-debian-11-r3
     digest: ""
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
@@ -1101,10 +1101,10 @@ mariadb:
   ##      https://github.com/bitnami/containers/blob/main/bitnami/mariadb/README.md#creating-a-database-user-on-first-run
   ##
   auth:
-    rootPassword: ""
+    rootPassword: "pass4001"
     database: bitnami_wordpress
     username: bn_wordpress
-    password: ""
+    password: "pass4001"
   ## MariaDB Primary configuration
   ##
   primary:
@@ -1117,10 +1117,10 @@ mariadb:
     ##
     persistence:
       enabled: true
-      storageClass: ""
+      storageClass: "openebs-lvm"
       accessModes:
         - ReadWriteOnce
-      size: 8Gi
+      size: 1Gi
 ## External Database Configuration
 ## All of these values are only used if `mariadb.enabled=false`
 ##
@@ -1136,7 +1136,7 @@ externalDatabase:
   user: bn_wordpress
   ## @param externalDatabase.password External Database user password
   ##
-  password: ""
+  password: "pass4001"
   ## @param externalDatabase.database External Database database name
   ##
   database: bitnami_wordpress
@@ -1181,3 +1181,4 @@ externalCache:
   ## @param externalCache.port External cache server port
   ##
   port: 11211
+
