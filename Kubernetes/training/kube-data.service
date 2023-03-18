@@ -1,0 +1,10 @@
+[Unit]
+Description=Restore LVM metadata
+Before=snap.microk8s.daemon-containerd.service
+
+[Service]
+ExecStart=/home/ubuntu/misc/Kubernetes/training/init_vg.sh
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target
