@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blackbox
+  labels:
+    app: blackbox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blackbox
+  template:
+    metadata:
+      labels:
+        app: blackbox
+    spec:
+      containers:
+        - image: prom/blackbox-exporter:v0.21.1@sha256:7a255982b24ed3d142f78075a7d8af976355b6f62cec60c573ee115c1beb1d0c
+          volumeMounts:
+            - mountPath: /config
+              name: configdir
+          ports:
+            - containerPort: 9115
+          args:
+            - "--config.file=/config/blackbox.yml"
+          imagePullPolicy: Always
+          name: blackbox
+      volumes:
+        - name: configdir
+          configMap:
+            name: blackboxcm
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blackbox
+spec:
+  selector:
+    app: blackbox
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 9115
+  type: ClusterIP
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: blackboxcm
+  namespace: default
+data:
+  blackbox.yml: |
+    modules:
+      martinkonicek:
+        prober: http
+        timeout: 5s
+        http:
+          method: GET
+          headers:
+            Host: www.github.com
+          preferred_ip_protocol: ip4
+          follow_redirects: true
+          fail_if_body_not_matches_regexp:
+            - "Github"
+
+
