@@ -1,0 +1,30 @@
+---
+- job_name: 'monitoring'
+  metrics_path: /probe
+  static_configs:
+- targets:
+- martinkonicek:www.martinkonicek.eu
+  relabel_configs:
+- source_labels: [__address__]
+  regex: (\w+):(.+)
+  target_label: __param_module # Tokenize on ':' and use 1st element as 'module' param to blackbox
+  replacement: ${1}
+- source_labels: [__param_module]
+  target_label: module        # Copy module into label for further analysis in metrics
+- source_labels: [__address__]
+  regex: (\w+):(.+)
+  target_label: __param_target # Tokenize on ':' and use 2nd part of the original target as 'target' param to blackbox
+  replacement: ${2}
+- target_label: __address__
+  replacement: blackbox  # Replace __address__ with Blackbox exporter incluster address
+- source_labels: [__param_target]
+  target_label: instance
+- source_labels: [__param_target]
+  regex: (\w+\:\/\/)?([\w-]+)\.(\w+)(\:\d+)?([^:\n]+)?
+  target_label: service
+  replacement: ${2} # Do some additional processing for further analysis in metrics
+- source_labels: [__param_target]
+  regex: (\w+\:\/\/)?([\w-]+)\.(\w+)(\:\d+)?([^:\n]+)?
+  target_label: kubernetes_namespace
+  replacement: ${3} # Do some additional processing for further analysis in metrics.
+`
