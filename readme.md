@@ -8,7 +8,7 @@ see https://www.martinkonicek.eu/
 ![Logo](https://raw.githubusercontent.com/koss822/misc/master/imgs/frontlogos/moby-logo.png "Docker logo")
 - [**docker-selenium-firefox**](https://github.com/koss822/misc/blob/master/Docker/selenium-firefox) - (created June/19/2022) Docker image for headless scrapping with Python, Selenium and Firefox
 - [**mikrotik-exporter**](https://github.com/koss822/mktxp) - Kubernetes version of Mikrotik mktxp exporter with builded image through CI/CD pipeline GitHub actions saved on Docker.IO
-- [**blackbox-exporter**](https://github.com/koss822/misc/blob/master/Kubernetes/deployments/blackbox.yml) - (created April/24/2023) Blackbox exporter for Kubernetes (monitor websites in Grafana)
+- [**blackbox-exporter**](https://github.com/koss822/misc/blob/master/Kubernetes/website-monitoring/blackbox.yml) - (created April/24/2023) Blackbox exporter for Kubernetes (monitor websites in Grafana)
 
 ## Python
 ![Logo](https://raw.githubusercontent.com/koss822/misc/master/imgs/frontlogos/python.png "Python logo")
