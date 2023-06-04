@@ -8,22 +8,7 @@ const port = 8080;
 const filePath = 'exchange_rates.txt';
 const fileUrl = 'https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/denni_kurz.txt'
 
-function downloadCurrencies(){
-  axios.get(fileUrl, { responseType: 'stream' })
-    .then(response => {
-      const outputStream = fs.createWriteStream(filePath);
-      response.data.pipe(outputStream);
-
-      outputStream.on('finish', () => {
-        console.log(`Data written to ${filePath} successfully.`);
-      });
-    })
-    .catch(error => {
-      console.error('Error occurred while fetching data:', error);
-    });
-
-  console.log(`File downloaded successfully: ${filePath}`);
-
+function parseData(){
   // Read the downloaded file
   const fileContent = fs.readFileSync(filePath, { encoding: 'utf8', flag: 'r' });
 
@@ -47,16 +32,41 @@ function downloadCurrencies(){
   return currencyData;
 }
 
+async function downloadCurrencies(){
+  await axios.get(fileUrl, { responseType: 'stream' })
+    .then(response => {
+      const outputStream = fs.createWriteStream(filePath);
+      response.data.pipe(outputStream);
+
+      return new Promise(resolve => outputStream.on('finish', () => {
+        console.log(`File downloaded successfully: ${filePath}`);
+        console.log(`Data written to ${filePath} successfully.`);
+        resolve();
+      }));
+    })
+    .catch(error => {
+      console.error('Error occurred while fetching data:', error);
+    });
+  return parseData();
+}
+  
+
+
   // Create a Prometheus exporter endpoint
   app.get('/metrics', (req, res) => {
     // Generate Prometheus metrics format
     let metrics = '';
-    downloadCurrencies().forEach(data => {
-      metrics += `exchange_rate{currency="${data.currency}"} ${data.exchangeRate}\n`;
-    });
-
-    res.setHeader('Content-Type', 'text/plain');
-    res.send(metrics);
+    downloadCurrencies()
+      .then(result => {
+        result.forEach(data => {
+          metrics += `exchange_rate{currency="${data.currency}"} ${data.exchangeRate}\n`;
+        });
+        return metrics;
+      })
+      .then(metrics => {
+        res.setHeader('Content-Type', 'text/plain');
+        res.send(metrics);
+      });
   });
 
   // Start the server
