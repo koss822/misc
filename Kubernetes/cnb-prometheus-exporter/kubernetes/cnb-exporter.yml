@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: cnb-exporter
-          image: krab55/cnb-prometheus-exporter:dev
+          image: krab55/cnb-prometheus-exporter:master
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
 ---

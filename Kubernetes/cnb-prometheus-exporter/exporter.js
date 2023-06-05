@@ -7,6 +7,30 @@ const port = 8080;
 const filePath = 'exchange_rates.txt';
 const fileUrl = 'https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/denni_kurz.txt'
 
+function replaceSpacesAndDiacritics(input) {
+  // Replace spaces with dashes
+  var replacedSpaces = input.replace(/ /g, '-');
+
+  // Replace Czech diacritics with normal characters
+  var replacedDiacritics = replacedSpaces
+    .replace(/[áäÁÄ]/g, 'a')
+    .replace(/[čČ]/g, 'c')
+    .replace(/[ďĎ]/g, 'd')
+    .replace(/[éěÉĚ]/g, 'e')
+    .replace(/[íÍ]/g, 'i')
+    .replace(/[ľĺĽĹ]/g, 'l')
+    .replace(/[ňŇ]/g, 'n')
+    .replace(/[óôÓÔ]/g, 'o')
+    .replace(/[ŕřŔŘ]/g, 'r')
+    .replace(/[šŠ]/g, 's')
+    .replace(/[ťŤ]/g, 't')
+    .replace(/[úůÚŮ]/g, 'u')
+    .replace(/[ýÝ]/g, 'y')
+    .replace(/[žŽ]/g, 'z');
+
+  return replacedDiacritics.toLowerCase();
+}
+
 function parseData(){
   // Read the downloaded file
   const fileContent = fs.readFileSync(filePath, { encoding: 'utf8', flag: 'r' });
@@ -21,7 +45,7 @@ function parseData(){
   for (let i = 2; i < rows.length; i++) {
     const row = rows[i].split('|');
     if(row.length == 5){
-      const currency = row[1];
+      const currency = replaceSpacesAndDiacritics(`${row[0]}-${row[1]}`);
       const exchangeRate = parseFloat(row[4].replace(',', '.'));
 
       // Add currency and exchange rate as an object to the array
