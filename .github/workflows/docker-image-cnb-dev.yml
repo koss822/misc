@@ -1,0 +1,23 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: ["dev"]
+  pull_request:
+    branches: ["dev"]
+
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build docker image
+        run: cd Kubernetes/cnb-prometheus-exporter && docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/cnb-prometheus-exporter:$(date +%s) --tag ${{ secrets.DOCKERHUB_USERNAME }}/cnb-prometheus-exporter:dev && docker push ${{ secrets.DOCKERHUB_USERNAME }}/cnb-prometheus-exporter --all-tags
