@@ -25,6 +25,23 @@ spec:
             limits:
               cpu: 100m
               memory: 256Mi
+          readinessProbe:
+            httpGet:
+              path: /metrics
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - >
+                  if ! curl -s http://localhost:8080/metrics | grep -q 'exchange_rate{currency="emu-euro"} [0-9.]*$'; then
+                    exit 1;
+                  fi
+            initialDelaySeconds: 10
+            periodSeconds: 15
 ---
 apiVersion: v1
 kind: Service
