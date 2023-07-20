@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sp500exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sp500exporter
+  template:
+    metadata:
+      labels:
+        app: sp500exporter
+    spec:
+      containers:
+        - name: cnb-exporter
+          image: krab55/sp500exporter:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 25m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 256Mi
+          readinessProbe:
+            httpGet:
+              path: /metrics
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 3600
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - >
+                  if ! curl -s http://localhost:8080/metrics | grep -q 'stock_price{stock="sp500"} [0-9.]*$'; then
+                    exit 1;
+                  fi
+            initialDelaySeconds: 10
+            periodSeconds: 3600
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sp500exporter-service
+spec:
+  selector:
+    app: sp500exporter
+  ports:
+    - protocol: TCP
+      port: 9100
+      targetPort: 8080
+  type: ClusterIP
