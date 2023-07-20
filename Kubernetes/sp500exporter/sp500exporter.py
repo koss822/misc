@@ -6,7 +6,7 @@ import datetime
 app = Flask(__name__)
 cache = TTLCache(maxsize=100, ttl=datetime.timedelta(hours=6), timer=datetime.datetime.now)
 
-@app.route('/')
+@app.route('/metrics')
 def fetch_sp500_price():
     # Fetch the data for the S&P 500 index
     if 'sp500_price' in cache:

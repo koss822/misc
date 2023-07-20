@@ -13,7 +13,7 @@ spec:
         app: sp500exporter
     spec:
       containers:
-        - name: cnb-exporter
+        - name: sp500exporter
           image: krab55/sp500exporter:latest
           imagePullPolicy: Always
           ports:
