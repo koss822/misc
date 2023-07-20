@@ -10,6 +10,7 @@ see https://www.martinkonicek.eu/
 - [**mikrotik-exporter**](https://github.com/koss822/mktxp) - Kubernetes version of Mikrotik mktxp exporter with builded image through CI/CD pipeline GitHub actions saved on Docker.IO
 - [**blackbox-exporter**](https://github.com/koss822/misc/blob/master/Kubernetes/website-monitoring/blackbox.yml) - (created April/24/2023) Blackbox exporter for Kubernetes (monitor websites in Grafana)
 - [**cnb-prometheus-exporter**](https://github.com/koss822/misc/blob/master/Kubernetes/cnb-prometheus-exporter) - (created June/08/2023) CNB exporter for Prometheus (monitor exchange rates in Grafana)
+- [**sp500-prometheus-exporter**](https://github.com/koss822/misc/blob/master/Kubernetes/sp500exporter) - (created July/20/2023) SP500 exporter for Prometheus
 
 ## Python
 ![Logo](https://raw.githubusercontent.com/koss822/misc/master/imgs/frontlogos/python.png "Python logo")

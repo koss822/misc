@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cnb-exporter
+  name: sp500exporter
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cnb-exporter
+      app: sp500exporter
   template:
     metadata:
       labels:
-        app: cnb-exporter
+        app: sp500exporter
     spec:
       containers:
-        - name: cnb-exporter
-          image: krab55/cnb-prometheus-exporter:latest
+        - name: sp500exporter
+          image: krab55/sp500exporter:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -37,7 +37,7 @@ spec:
                 - sh
                 - -c
                 - >
-                  if ! curl -s http://localhost:8080/metrics | grep -q 'exchange_rate{currency="emu-euro"} [0-9.]*$'; then
+                  if ! curl -s http://localhost:8080/metrics | grep -q 'stock_price{stock="sp500"} [0-9.]*$'; then
                     exit 1;
                   fi
             initialDelaySeconds: 10
@@ -46,10 +46,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: cnb-exporter-service
+  name: sp500exporter-service
 spec:
   selector:
-    app: cnb-exporter
+    app: sp500exporter
   ports:
     - protocol: TCP
       port: 9100
