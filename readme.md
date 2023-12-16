@@ -31,9 +31,10 @@ see https://www.martinkonicek.eu/
 - [**mygit**](https://github.com/koss822/misc/tree/master/Linux/MySettings/mygit) - allow caching password in memory, basic gitignore file for VIM editor, shell prompt settings for Bash
 - [**myvim**](https://github.com/koss822/misc/tree/master/Linux/MySettings/myvim) - my VIM configuration, optimized for Python development
 - [**myvnc**](https://github.com/koss822/misc/tree/master/Linux/MySettings/myvnc) - my TightVNC configuration for Lubuntu or other Ubuntu versions, tested on 18.04 with LXDE
-### [Ansible](https://github.com/koss822/misc/tree/master/Linux/Ansible)
+### [Ansible](https://github.com/koss822/misc/tree/master/Linux/Ansible/)
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/ansible.svg" alt="logo" width="100" height="100"/><br />
 - [**smtp**](https://github.com/koss822/misc/tree/master/Linux/Ansible/smtp) - tutorial how to set-up SMTP relay with Ansible on Ubuntu 18.04
+- [**smtp-test**](https://github.com/koss822/misc/tree/master/Linux/Ansible/smtp-test) - send test email using python and smtp
 
 ### [Projects](https://github.com/koss822/misc/tree/master/Linux/Projects)
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/projects.svg" alt="logo" width="100" height="100"/><br />
