@@ -11,6 +11,7 @@ see https://www.martinkonicek.eu/
 - [**blackbox-exporter**](https://github.com/koss822/misc/blob/master/Kubernetes/website-monitoring/blackbox.yml) - (created April/24/2023) Blackbox exporter for Kubernetes (monitor websites in Grafana)
 - [**cnb-prometheus-exporter**](https://github.com/koss822/misc/blob/master/Kubernetes/cnb-prometheus-exporter) - (created June/08/2023) CNB exporter for Prometheus (monitor exchange rates in Grafana)
 - [**sp500-prometheus-exporter**](https://github.com/koss822/misc/blob/master/Kubernetes/sp500exporter) - (created July/20/2023) SP500 exporter for Prometheus
+- [**slack-alarm**](https://github.com/koss822/misc/blob/master/Kubernetes/slack-alarm) - (created Feb/2024) Notification of IKEA Parasoll door/window sensor to slack
 
 ## Python
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/python.svg" alt="logo" width="100" height="100"/><br />
