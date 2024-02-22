@@ -1,10 +1,14 @@
-name: Docker Image CI
+name: CNB Exporter DEV CI
 
 on:
   push:
-    branches: ["dev"]
+    branches: [ "dev" ]
+    paths:
+      - 'Kubernetes/cnb-prometheus-exporter/**'
   pull_request:
-    branches: ["dev"]
+    branches: [ "dev" ]
+    paths:
+      - 'Kubernetes/cnb-prometheus-exporter/**'
 
 jobs:
   build-docker-image:

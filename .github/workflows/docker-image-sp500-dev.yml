@@ -1,10 +1,14 @@
-name: Docker Image CI
+name: SP500 DEV CI
 
 on:
   push:
-    branches: ["dev"]
+      branches: [ "dev" ]
+      paths:
+        - 'Kubernetes/sp500exporter/**'
   pull_request:
-    branches: ["dev"]
+      branches: [ "dev" ]
+      paths:
+        - 'Kubernetes/sp500exporter/**'
 
 jobs:
   build-docker-image:
