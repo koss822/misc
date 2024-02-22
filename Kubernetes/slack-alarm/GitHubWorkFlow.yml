@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Slack-Alarm CI
 
 on:
   push:
