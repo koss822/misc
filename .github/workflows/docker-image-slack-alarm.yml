@@ -1,0 +1,27 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'Kubernetes/slack-alarm/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'Kubernetes/slack-alarm/**'
+
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Docker login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Build docker image
+        run: cd Kubernetes/slack-alarm && docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/slack-alarm:$(date +%s) --tag ${{ secrets.DOCKERHUB_USERNAME }}/slack-alarm:latest && docker push ${{ secrets.DOCKERHUB_USERNAME }}/slack-alarm --all-tags
