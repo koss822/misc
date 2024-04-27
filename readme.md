@@ -12,6 +12,7 @@ see https://www.martinkonicek.eu/
 - [**cnb-prometheus-exporter**](https://github.com/koss822/misc/blob/master/Kubernetes/cnb-prometheus-exporter) - (created June/08/2023) CNB exporter for Prometheus (monitor exchange rates in Grafana)
 - [**sp500-prometheus-exporter**](https://github.com/koss822/misc/blob/master/Kubernetes/sp500exporter) - (created July/20/2023) SP500 exporter for Prometheus
 - [**slack-alarm**](https://github.com/koss822/misc/blob/master/Kubernetes/slack-alarm) - (created Feb/2024) Notification of IKEA Parasoll door/window sensor to slack
+- [**sops**](https://github.com/koss822/misc/blob/master/Kubernetes/sops) - (created Apr/2024) SOPS Git Hooks for Kubernetes Secrets Management
 
 ## Python
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/python.svg" alt="logo" width="100" height="100"/><br />

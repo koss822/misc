@@ -1,0 +1,58 @@
+#!/bin/sh
+
+# Define where your age public key for sops is stored
+AGE_KEY_FILE=".sops/age/public.key"
+if [ ! -f "$AGE_KEY_FILE" ]; then
+  echo "Age key file not found: $AGE_KEY_FILE"
+  exit 1
+fi
+PUBLIC_KEY=$(cat "$AGE_KEY_FILE")
+
+# Function to compute SHA-256 hash of file content
+compute_hash() {
+  local file=$1
+  sha256sum "$file" | awk '{print $1}'
+}
+
+# Function to encrypt file with sops
+encrypt_file() {
+  local file=$1
+  local enc_file="${file%.yml}.enc.yml"
+
+  # Encrypt and add a hash comment if possible
+  if sops --encrypt --encrypted-regex 'value|password' --age "$PUBLIC_KEY" "$file" > "$enc_file"; then
+    local hash=$(compute_hash "$file")
+    # This example adds the hash at the end of the file
+    # Assuming the output format supports comments, adjust based on the format
+    echo "# Hash: $hash" >> "$enc_file"
+  fi
+  echo "Encrypted and updated: $enc_file"
+}
+
+# Main loop over files
+for file in $(git diff --cached --name-only | grep '\.yml$' | grep -v '\.enc\.yml$'); do
+  current_hash=$(compute_hash "$file")
+  enc_file="${file%.yml}.enc.yml"
+
+  # Check if encrypted file exists and fetch the last hash
+  if [ -f "$enc_file" ]; then
+    previous_hash=$(tail -n 1 "$enc_file" | grep '# Hash:' | cut -d' ' -f3)
+
+    if [ "$current_hash" != "$previous_hash" ]; then
+      encrypt_file "$file"
+      # Ensure the encrypted file is staged
+      git add "$enc_file"
+    else
+      echo "No changes detected in $file. Skipping encryption."
+    fi
+  else
+    # No encrypted version exists yet, proceed with encryption
+    encrypt_file "$file"
+    git add "$enc_file"
+  fi
+
+  # Optionally, unstage the plaintext or handle as desired
+  git reset HEAD -- "$file"
+done
+
+exit 0

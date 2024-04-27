@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# Define where your age private key for sops is stored - ensure this is SECURELY handled
+export SOPS_AGE_KEY_FILE="${PWD}/.sops/age/private.key"
+
+# Check if the age key file exists and is readable
+if [ ! -f "$SOPS_AGE_KEY_FILE" ]; then
+  echo "Age secret key file not found: $SOPS_AGE_KEY_FILE"
+  exit 1
+fi
+
+# Define a pattern or specific encrypted files to decrypt
+ENCRYPTED_FILES_PATTERN="*.enc.yml"
+
+strip_hash_comment() {
+  local file=$1
+  # Assuming the hash is present as the last line of the file,
+  # and your file format supports inline comments.
+  # Adjust if your file's comment syntax or hash position is different.
+  sed -i '/^# Hash:/d' "$file"
+}
+
+# Decrypt the files after checkout
+for file in $(find . -type f -name "$ENCRYPTED_FILES_PATTERN"); do
+  # Assuming the original file name is stored by simply removing the ".enc" extension
+  DECRYPTED_FILE_NAME="${file%.enc.yml}.yml"
+
+  # Check if the decrypted file name exists; if so, proceed to decrypt it
+  if [ -f "$file" ]; then
+    echo "Decrypting $file to $DECRYPTED_FILE_NAME"
+    # Instead of replacing the encrypted file, we decrypt to the original file name
+    sops --decrypt "$file" --age > "$DECRYPTED_FILE_NAME" 2>/dev/null
+    strip_hash_comment "$DECRYPTED_FILE_NAME"
+  fi
+done
+
+exit 0
