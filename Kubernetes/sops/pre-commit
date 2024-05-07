@@ -20,7 +20,7 @@ encrypt_file() {
   local enc_file="${file%.yml}.enc.yml"
 
   # Encrypt and add a hash comment if possible
-  if sops --encrypt --encrypted-regex 'value|password' --age "$PUBLIC_KEY" "$file" > "$enc_file"; then
+  if sops --encrypt --encrypted-regex 'value|password|VALUE|PASSWORD' --age "$PUBLIC_KEY" "$file" > "$enc_file"; then
     local hash=$(compute_hash "$file")
     # This example adds the hash at the end of the file
     # Assuming the output format supports comments, adjust based on the format
