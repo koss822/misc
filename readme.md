@@ -55,6 +55,11 @@ see https://www.martinkonicek.eu/
 ## [imgs](https://github.com/koss822/misc/tree/master/imgs)
 Various images and screenshots
 
+## Ostatní (Czech)
+<img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/projects.svg" alt="logo" width="100" height="100"/><br />
+- [**prevodnik-cnb-excel**](https://github.com/koss822/misc/blob/master/Other/cnb-convert-currency/excel) - (vytvořeno Květen/30/2024) Převodník měn pro Excel pomocí VBA skriptu, který načítá aktuální kurzy z webových stránek ČNB a umožňuje převod měn na základě zadaného data a částky.
+- [**prevodnik-cnb-google-sheets**](https://github.com/koss822/misc/blob/master/Other/cnb-convert-currency/google-sheets) - (vytvořeno Květen/30/2024) Převodník měn pro Google Sheets pomocí Apps Script, který načítá aktuální kurzy z webových stránek ČNB a umožňuje převod měn na základě zadaného data a částky.
+
 ## License
 see [gpl.txt](https://github.com/koss822/misc/blob/master/gpl.txt)
 
