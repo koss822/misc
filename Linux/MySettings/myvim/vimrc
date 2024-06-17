@@ -81,3 +81,6 @@ autocmd BufRead,BufNewFile *.deckspec set filetype=yaml
 " Powershell
 :let g:ps1_nofold_blocks = 1
 :let g:ps1_nofold_sig = 1
+
+" Force saving files that require root permission
+cnoremap w!! w !sudo tee > /dev/null %
