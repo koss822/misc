@@ -1,5 +1,5 @@
 scrape_configs:
   - job_name: 'cnb'
-    scrape_interval: 1h
+    scrape_interval: 1m
     static_configs:
       - targets: ['cnb-exporter-service:9100']
