@@ -1,9 +1,5 @@
 # Martin Konicek's repository
 
-## About
-Reliable and trustworthy B2B DevOps services
-see https://www.martinkonicek.eu/
-
 ## Docker & Kubernetes
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/docker.svg" alt="Docker logo" width="100" height="100"/><br />
 - [**docker-selenium-firefox**](https://github.com/koss822/misc/blob/master/Docker/selenium-firefox) - (created June/19/2022) Docker image for headless scrapping with Python, Selenium and Firefox
