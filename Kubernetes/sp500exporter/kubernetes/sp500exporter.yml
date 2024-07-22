@@ -36,9 +36,10 @@ spec:
               command:
                 - sh
                 - -c
-                - >
-                  if ! curl -s http://localhost:8080/metrics | grep -q 'stock_price{stock="sp500"} [0-9.]*$'; then
-                    exit 1;
+                - |
+                  metrics=$(curl -s http://localhost:8080/metrics)
+                  if ! echo "$metrics" | grep -q 'stock_price{stock="sp500"} [0-9.]*$'; then
+                    exit 1
                   fi
             initialDelaySeconds: 10
             periodSeconds: 3600
