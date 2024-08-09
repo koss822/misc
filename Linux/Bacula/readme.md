@@ -19,6 +19,36 @@ This project aims to monitor daily backup sizes from Bacula, storing the data in
 - Grafana
 - `influxdb-client` Python library
 
+## Diagram
+```
+ +-----------------+          +---------------------+
+ |     Bacula      | ----->   |    Bacula Logs      |
+ |    (Backup)     |          |                     |
+ +-----------------+          +---------------------+
+                                   |
+                                   |
+                                   v
+                   +----------------------------------+
+                   | Data Collection Script           |
+                   | (bacula-influx.py)               |
+                   +----------------------------------+
+                                   |
+                                   |
+                                   v
+                   +---------------------+
+                   |      InfluxDB       |
+                   |   (Time-Series DB)  |
+                   +---------------------+
+                                   |
+                                   |
+                                   v
+                   +---------------------+
+                   |      Grafana        |
+                   |   (Visualization)   |
+                   +---------------------+
+```
+
+
 ## Installation
 
 ### 1. Set Up InfluxDB
