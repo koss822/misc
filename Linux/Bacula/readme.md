@@ -4,7 +4,7 @@
 This project aims to monitor daily backup sizes from Bacula, storing the data in InfluxDB for time-series analysis and visualizing it in Grafana. The integration is done using a Python script scheduled with a daily cron job.
 
 ## Screenshot
-![Screenshot](https://s3-eu-west-1.amazonaws.com/enigma14-public/public/bacula-grafana.png)
+![Screenshot](https://github.com/koss822/misc/raw/master/imgs/bacula-grafana.png)
 
 ## Project Components
 - **Bacula**: Backup management system used to schedule and manage backup jobs.
