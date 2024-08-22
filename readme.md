@@ -50,6 +50,11 @@
 - [**rpi_usb_stick**](https://github.com/koss822/misc/tree/master/RaspberryPi/rpi_usb_stick) - Raspbian settings for 3G modem Huawei E173
 - [**rpiwhitenoise**](https://github.com/koss822/misc/tree/master/RaspberryPi/rpiwhitenoise) - Tools for generating whitenoise (FAN) on RaspberryPi
 
+## [Windows](https://github.com/koss822/misc/tree/master/windows)
+<img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/windows.svg" alt="logo" width="100" height="100"/><br />
+- [**ClearRecentItems**](https://github.com/koss822/misc/tree/master/Windows/clear-recent) - automates the process of clearing recent files from Windows File Explorer and Windows Media Player.
+
+
 ## [imgs](https://github.com/koss822/misc/tree/master/imgs)
 Various images and screenshots
 
