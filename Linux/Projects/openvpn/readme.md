@@ -14,11 +14,6 @@ You can see documentation on MediaWiki site below.
 
 ![Sketch](https://raw.githubusercontent.com/koss822/misc/master/imgs/openvpn.png "OpenVPN diagram")
 
-## Links
-- https://www.enigma14.eu/wiki/OpenVPN_config_generator
-- https://www.enigma14.eu/wiki/OpenVPN_Windows_auto-restart
-- https://www.enigma14.eu/wiki/OpenVPN_Linux_auto-restart
-
 ## Directory structure
     .
     ├── conf_generator

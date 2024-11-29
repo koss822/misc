@@ -1,13 +1,6 @@
 # Wireless Connection Backup Switcher
 
 ## Network diagram
-![Network diagram](https://www.enigma14.eu/wiki/images/thumb/8/8c/Rpi-backup1.png/799px-Rpi-backup1.png)
-
-## Website
-https://www.enigma14.eu/wiki/RPi_3G/4G_Wireless_Connection_Backup_Switcher
-
-## Author
-Author: Enigmaguy, martin [at] enigma14 [dot] eu
 
 ## License
 

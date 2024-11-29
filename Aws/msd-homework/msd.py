@@ -10,7 +10,7 @@ def lambda_handler(event, context):
     url = "http://bulk.openweathermap.org/sample/daily_14.json.gz"
     tmpFile = "daily_14.json.gz"
     htmlFile = "msd.html"
-    bucket = "s3.enigma14.eu"
+    bucket = "s3.aws.eu"
     tmpDir = "/tmp/"
 
     # Download file
@@ -52,7 +52,7 @@ def lambda_handler(event, context):
     print("Generating ...")
     htmlclouds = ""
     for i in range(int(clouds)):
-        htmlclouds += "<img src=\"http://s3.enigma14.eu/msd/cloud-icon-small.png\" />"
+        htmlclouds += "<img src=\"http://s3.aws.eu/msd/cloud-icon-small.png\" />"
 
     html = f"""
     <html><body>

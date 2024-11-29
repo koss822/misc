@@ -26,6 +26,6 @@ cd requests_layer/
 sudo pip3 install --target . requests
 zip -r ../requests_layer.zip .
 cd ..
-aws --profile admin --region eu-west-1 s3 cp requests_layer.zip s3://enigma14-public/
-aws --profile admin --region eu-west-1 lambda publish-layer-version --layer-name requests --content S3Bucket=enigma14-public,S3Key=requests_layer.zip --compatible-runtimes python3.8
+aws --profile admin --region eu-west-1 s3 cp requests_layer.zip s3://aws-public/
+aws --profile admin --region eu-west-1 lambda publish-layer-version --layer-name requests --content S3Bucket=aws-public,S3Key=requests_layer.zip --compatible-runtimes python3.8
 ```

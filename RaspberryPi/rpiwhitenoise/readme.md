@@ -30,5 +30,3 @@ Machine will be automatically installed and rebooted. After each boot the noise 
 Yes, you can, if you edit fan.sh file. But I recommend you to buy speakers with volume control. My recommended speakers costs around 10 USD which is very affordable price and they provide good quality of sound.
 3. **Is it safe to install something from internet?**
 There are basically no risks. I suppose this machine will be disconnected from network so it won't have access anywhere and only generate sounds.
-4. **Can I contact you?**
-Yes, I will be very happy if you share with me your experience or questions. You can contact me on martin [at] enigma14 [dot] eu

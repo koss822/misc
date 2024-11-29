@@ -6,7 +6,7 @@ Parameters:
   S3BucketName:
     Description: S3 bucket that has the zip package
     Type: String
-    Default: s3.enigma14.eu
+    Default: s3.aws.eu
 
   S3BucketKey:
     Description: S3 Key that has the zip package
@@ -48,11 +48,11 @@ Resources:
               - "s3:PutObject"
               - "s3:PutObjectAcl"
             Resource:
-              - "arn:aws:s3:::s3.enigma14.eu/msd/*"
+              - "arn:aws:s3:::s3.aws.eu/msd/*"
 
           - Effect: Allow
             Action: s3:ListBucket
-            Resource: arn:aws:s3:::s3.enigma14.eu
+            Resource: arn:aws:s3:::s3.aws.eu
 
   MSDFunction:
     Type: "AWS::Lambda::Function"

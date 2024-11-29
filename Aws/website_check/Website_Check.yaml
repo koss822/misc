@@ -10,7 +10,7 @@ Parameters:
     Default: i-xxxxx
   website:
     Type: String
-    Default: 'https://www.enigma14.eu/wiki/'
+    Default: 'https://www.google.com'
   webstring:
     Type: String
     Default: Raspberry
@@ -23,7 +23,7 @@ Resources:
     Properties:
       Handler: lambda_function.lambda_handler
       Runtime: python3.6
-      CodeUri: s3://enigma14-public/Website_Check-44ac5b41-e079-47b2-90bf-a5861831f5fa.zip
+      CodeUri: s3://aws-public/Website_Check-44ac5b41-e079-47b2-90bf-a5861831f5fa.zip
       Description: ''
       MemorySize: 128
       Timeout: 600

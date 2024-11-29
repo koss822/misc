@@ -3,7 +3,7 @@
 # https://github.com/koss822/misc/Linux/Projects/usb_backup
 # ========================================================================
 # GNU GENERAL PUBLIC LICENSE - http://www.gnu.org/licenses/gpl-3.0.en.html
-# Author martin@enigma14.eu
+# Author Martin Konicek
 # Tested and developed on Xubuntu 14.04
 # ========================================================================
 
