@@ -9,6 +9,7 @@
 - [**sp500-prometheus-exporter**](https://github.com/koss822/misc/blob/master/Kubernetes/sp500exporter) - (created July/20/2023) SP500 exporter for Prometheus
 - [**slack-alarm**](https://github.com/koss822/misc/blob/master/Kubernetes/slack-alarm) - (created Feb/2024) Notification of IKEA Parasoll door/window sensor to slack
 - [**sops**](https://github.com/koss822/misc/blob/master/Kubernetes/sops) - (created Apr/2024) SOPS Git Hooks for Kubernetes Secrets Management
+- [**pod-by-pid**](https://github.com/koss822/misc/blob/master/Kubernetes/pod-by-pid) - (created Dec/2024) A Script to Find the Kubernetes Pod Associated with a Process (PID) on MicroK8s
 
 ## Python
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/python.svg" alt="logo" width="100" height="100"/><br />
