@@ -84,3 +84,116 @@ from(bucket: "bacula")
    ```bash
    pip install influxdb-client
    ```
+
+# check_bacula_director.sh
+
+`check_bacula_director.sh` is a simple Nagios plugin script to monitor the Bacula Director process. It checks if the `bacula-dir` process is running and returns appropriate status codes for Nagios.
+
+## Features
+- Verifies if the Bacula Director process (`bacula-dir`) is running.
+- Outputs Nagios-compatible status messages:
+- **OK**: If the Bacula Director is running.
+- **CRITICAL**: If the Bacula Director is not running.
+
+---
+
+## Prerequisites
+- Ensure `pgrep` is installed on the system (commonly available on most Linux distributions).
+- The Nagios user must have permission to execute the script.
+
+---
+
+## Installation
+
+1. Save the script as `check_bacula_director.sh` in your Nagios plugins directory (e.g., `/usr/lib/nagios/plugins/`).
+
+2. Make the script executable:
+
+```chmod +x /usr/lib/nagios/plugins/check_bacula_director.sh```
+
+---
+
+## Usage
+
+The script checks if the `bacula-dir` process is running. If it is, it outputs an "OK" message; otherwise, it outputs a "CRITICAL" message.
+
+### Command Line Example
+Run the script manually to test:
+
+```./check_bacula_director.sh```
+
+
+Expected output:
+- **If Bacula Director is running**:  
+
+OK: Bacula Director is running.
+
+- **If Bacula Director is not running**:  
+
+CRITICAL: Bacula Director is not running!
+
+Exit codes:
+- `0`: OK
+- `2`: CRITICAL
+
+---
+
+## Nagios Configuration
+
+To integrate this script into Nagios, follow these steps:
+
+### Step 1: Define Command in `commands.cfg`
+Add the following command definition to your Nagios `commands.cfg` file:
+
+```
+define command {
+command_name check_bacula_director
+command_line /usr/lib/nagios/plugins/check_bacula_director.sh
+}
+```
+
+### Step 2: Define Service in Your Host Configuration
+Add a service definition to monitor the Bacula Director in your host's configuration file:
+
+```
+define service {
+use generic-service ; Inherit default service settings
+host_name your_host_name ; Replace with your host's name
+service_description Bacula Director Status
+check_command check_bacula_director
+}
+```
+
+### Step 3: Restart Nagios
+Apply the changes by restarting Nagios:
+
+```sudo systemctl restart nagios```
+
+---
+
+## Example Output in Nagios Web Interface
+
+- **Service Name**: Bacula Director Status  
+- **Status**: OK or CRITICAL (depending on whether the process is running).  
+- **Output**:  
+  - OK: "Bacula Director is running."  
+  - CRITICAL: "Bacula Director is not running!"
+
+---
+
+## Troubleshooting
+
+1. **Permission Issues**:
+   Ensure the script has executable permissions and that the Nagios user can access it.
+
+2. **Incorrect Path**:
+   Verify that the path to `check_bacula_director.sh` in `commands.cfg` matches its actual location.
+
+3. **Bacula Process Name**:
+   If `bacula-dir` runs under a different name, update the script to reflect this.
+
+---
+
+## License
+
+This script is open-source and can be freely modified and distributed under the MIT License.
