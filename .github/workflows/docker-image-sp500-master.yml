@@ -1,6 +1,17 @@
 name: SP500 Prod CI
 
-on:
+on:  
+  schedule:
+    # Runs at 05:05 UTC on the 5th day of every month
+    # ┌───────────── minute (0 - 59)
+    # │ ┌───────────── hour (0 - 23)
+    # │ │ ┌───────────── day of the month (1 - 31)
+    # │ │ │ ┌───────────── month (1 - 12)
+    # │ │ │ │ ┌───────────── day of the week (0 - 6) (Sunday to Saturday)
+    # │ │ │ │ │
+    # │ │ │ │ │
+    # * * * * *
+    - cron: '5 5 5 * *'
   push:
     branches: [ "master" ]
     paths:
@@ -12,7 +23,7 @@ on:
 
 jobs:
   build-docker-image:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-linux
     steps:
       - name: Docker login
         uses: docker/login-action@v2
