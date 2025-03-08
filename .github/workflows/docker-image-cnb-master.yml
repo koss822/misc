@@ -37,3 +37,9 @@ jobs:
 
       - name: Build docker image
         run: cd Kubernetes/cnb-prometheus-exporter && docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/cnb-prometheus-exporter:$(date +%s) --tag ${{ secrets.DOCKERHUB_USERNAME }}/cnb-prometheus-exporter:latest && docker push ${{ secrets.DOCKERHUB_USERNAME }}/cnb-prometheus-exporter --all-tags
+      # Restart deployment
+      - name: Restart deployment
+        run: |
+          sudo curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+          kubectl rollout -n productivity-app restart deployment cnb-exporter
