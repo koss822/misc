@@ -27,7 +27,7 @@ while IFS= read -r line; do
     POD_NAME=$(echo "$line" | awk '{print $2}')
     STATUS=$(echo "$line" | awk '{print $4}')
 
-    if [[ "$STATUS" != "Running" ]]; then
+    if [[ "$STATUS" != "Running" && "$STATUS" != "Completed" ]]; then
         NOT_RUNNING=$((NOT_RUNNING + 1))
         OUTPUT+="$POD_NAME ($STATUS), "
     fi
