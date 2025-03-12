@@ -1,5 +1,9 @@
 # Martin Konicek's repository
 
+
+## [Home Set-Up](https://github.com/koss822/misc/tree/master/Home)
+<img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/diagrams/homesetup.drawio.png" alt="diagram" /><br />
+
 ## Docker & Kubernetes
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/docker.svg" alt="Docker logo" width="100" height="100"/><br />
 - [**docker-selenium-firefox**](https://github.com/koss822/misc/blob/master/Docker/selenium-firefox) - (created June/19/2022) Docker image for headless scrapping with Python, Selenium and Firefox
@@ -67,8 +71,5 @@ Various images and screenshots
 
 ## License
 see [gpl.txt](https://github.com/koss822/misc/blob/master/gpl.txt)
-
-## [Home Set-Up](https://github.com/koss822/misc/tree/master/Home)
-<img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/diagrams/homesetup.drawio.png" alt="diagram" /><br />
 
 
