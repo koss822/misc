@@ -68,4 +68,7 @@ Various images and screenshots
 ## License
 see [gpl.txt](https://github.com/koss822/misc/blob/master/gpl.txt)
 
+## [Home Set-Up](https://github.com/koss822/misc/tree/master/Home)
+<img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/diagrams/homesetup.drawio.png" alt="diagram" /><br />
+
 
