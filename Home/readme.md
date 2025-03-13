@@ -19,8 +19,11 @@ Kubernetes (K8s)*
 ### Prometheus
 *Monitoring and alerting toolkit*
 
-### Loki
+### [Loki](loki.md) 
 *Log aggregation system*
+
+<img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/loki1.png" alt="loki" />
+
 
 ### Promtail
 *Log collector for Loki*
