@@ -56,7 +56,12 @@ Kubernetes (K8s)*
 
 ## Additional Services
 ### Nagios
+<img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/nagios.png" alt="nagios" />
+
 *IT infrastructure monitoring*
+
+- [**checking running PODs on Kubernetes**](https://github.com/koss822/misc/tree/master/Linux/Nagios) - Nagios NRPE plugins, e.g. for checking running PODs on Kubernetes
+- [**bacula**](https://github.com/koss822/misc/tree/master/Linux/Bacula) - Monitor daily backup sizes from Bacula using InfluxDB and Grafana and Nagios plugin to check bacula director 
 
 ### Smokeping
 *Network latency monitoring*
