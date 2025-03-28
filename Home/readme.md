@@ -22,7 +22,7 @@ Kubernetes (K8s)*
 ### [Loki](loki.md) 
 *Log aggregation system*
 
-<img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/loki1.png" alt="loki" />
+![Loki](../imgs/loki1.png)
 
 
 ### Promtail
@@ -56,7 +56,8 @@ Kubernetes (K8s)*
 
 ## Additional Services
 ### Nagios
-<img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/nagios.png" alt="nagios" />
+
+![Nagios](../imgs/nagios.png)
 
 *IT infrastructure monitoring*
 
@@ -65,6 +66,8 @@ Kubernetes (K8s)*
 
 ### Smokeping
 *Network latency monitoring*
+
+![Smokeping](../imgs/smokeping.png)
 
 ### Docker Registry
 *Private container image registry*
