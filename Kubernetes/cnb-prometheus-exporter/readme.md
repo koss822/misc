@@ -16,6 +16,12 @@ Just run
 kubectl apply -f kubernetes/cnb-exporter.yml
 ```
 
+## Updating node packages
+```
+npx npm-check-updates -u
+npm install
+```
+
 You do not need to compile anything, image is already published. In Prometheus modify configuration to use
 **prometheus/scrape-config.yml**
 
