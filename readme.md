@@ -62,6 +62,10 @@
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/windows.svg" alt="logo" width="100" height="100"/><br />
 - [**ClearRecentItems**](https://github.com/koss822/misc/tree/master/Windows/clear-recent) - automates the process of clearing recent files from Windows File Explorer and Windows Media Player.
 
+## [3D Print](3DPrinting/)
+<img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/print.svg" alt="logo" width="100" height="100"/><br />
+- [**3D printing Tips and Tricks**](3DPrinting/) - Tips and Tricks for Creality Ender S1 Pro and Octoprint
+
 
 ## [imgs](https://github.com/koss822/misc/tree/master/imgs)
 Various images and screenshots
