@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: app
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  selector:
+    app: app

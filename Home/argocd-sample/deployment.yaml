@@ -1,0 +1,59 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: app
+spec:
+  replicas: 1 # Number of pod replicas
+  selector:
+    matchLabels:
+      app: app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1 # Ensures that at most 1 pod can be unavailable during updates
+      maxSurge: 1       # Allows 1 extra pod above the desired replicas to be created during updates
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: app
+          image: docker-registry/app:latest
+          resources:
+            limits:
+              cpu: "200m"
+              memory: "128M"
+          env:
+            # Define MySQL environment variables
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: app
+                  key: DATABASE_URL
+            - name: SHADOW_DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: app
+                  key: SHADOW_DATABASE_URL  
+          ports:
+            - containerPort: 3000  # Defines the port the application listens on
+          readinessProbe:
+            # Readiness probe ensures the pod is only added to the service once it's ready
+            httpGet:
+              path: / # Replace with the correct path for your application health check
+              port: 3000
+            initialDelaySeconds: 5 # Time to wait before starting the readiness probe
+            periodSeconds: 10      # Frequency of readiness checks
+            timeoutSeconds: 2      # Timeout for each readiness check
+            failureThreshold: 3    # Mark pod as "not ready" after 3 failed probes
+            successThreshold: 1    # Pod is marked "ready" after 1 successful probe
+          livenessProbe:
+            # Liveness probe checks if the application is still running
+            httpGet:
+              path: / # Replace with the correct path for your application health check
+              port: 3000
+            initialDelaySeconds: 5 # Time to wait before starting the liveness probe
+            periodSeconds: 10      # Frequency of liveness checks
+            timeoutSeconds: 2      # Timeout for each liveness check
+            failureThreshold: 3    # Pod will be restarted after 3 failed liveness checks

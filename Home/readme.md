@@ -12,6 +12,11 @@ This README provides an overview of my home server setup, which runs on Ubuntu u
 *A lightweight, CNCF certified Kubernetes distribution that's easy to install and maintain on Ubuntu.
 Kubernetes (K8s)*
 
+### ArgoCD
+![ArgoCD](../imgs/screenshots/argocd.png)
+
+See [ArgoCD Sample Deployment](argocd-sample) including HashiCorp Vault Operator example
+
 ## Monitoring and Observability
 ### Grafana
 *Data visualization and monitoring*
