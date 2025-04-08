@@ -16,7 +16,7 @@ RUN update-ca-certificates
 
 # OPTIONAL: Install dumb-init (Very handy for easier signal handling of SIGINT/SIGTERM/SIGKILL etc.)
 RUN nc -zv objects.githubusercontent.com 443
-RUN wget --retry-connrefused -w 5 -T 5 -t 20 "https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_amd64.deb"
+RUN bash -c 'n=5; while [ $n -gt 0 ]; do wget --retry-connrefused -w 5 -T 5 -t 20 "https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_amd64.deb" && break || n=$((n-1)); echo "Retrying... Attempts left: $n"; sleep 5; done; if [ $n -eq 0 ]; then echo "Failed to download after multiple attempts"; exit 1; fi'
 RUN dpkg -i dumb-init_*.deb
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
