@@ -8,7 +8,8 @@
 FROM ubuntu:24.04
 
 RUN  apt-get update \
-    && apt-get install -y wget ca-certificates netcat-openbsd xz-utils \
+    && apt-get install -y wget ca-certificates netcat-openbsd xz-utils libgtk-3-0 \
+    libdbus-glib-1-2 libx11-xcb1 libxt6 libxrender1 libxrandr2 libasound2 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN update-ca-certificates
