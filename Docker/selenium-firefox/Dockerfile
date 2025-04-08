@@ -12,9 +12,9 @@ RUN  apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # OPTIONAL: Install dumb-init (Very handy for easier signal handling of SIGINT/SIGTERM/SIGKILL etc.)
-RUN wget https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_amd64.deb
+RUN wget --no-check-certificate https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_amd64.deb
 RUN dpkg -i dumb-init_*.deb
-ENTRYPOINT ["dumb-init"]
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
 # Install Firefox
 # In Debian, Firefox is called Iceweasel
@@ -26,7 +26,7 @@ RUN FIREFOX_DOWNLOAD_URL=$(if [ $FIREFOX_VERSION = "latest" ] || [ $FIREFOX_VERS
     && apt-get update -qqy \
     && apt-get -qqy --no-install-recommends install iceweasel \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
-    && wget --no-verbose -O /tmp/firefox.tar.bz2 $FIREFOX_DOWNLOAD_URL \
+    && wget --no-check-certificate --no-verbose -O /tmp/firefox.tar.bz2 $FIREFOX_DOWNLOAD_URL \
     && apt-get -y purge iceweasel \
     && rm -rf /opt/firefox \
     && tar -C /opt -xjf /tmp/firefox.tar.bz2 \
@@ -40,4 +40,4 @@ RUN apt install -y libxt6 python3 python3-pip
 RUN firefox -CreateProfile "headless /moz-headless"  -headless
 RUN pip3 install selenium boto3 webdriver-manager
 RUN mkdir -p /opt/app
-ENTRYPOINT ["/usr/bin/python3", "-u", "/opt/app/main.py"]
+CMD ["/usr/bin/python3", "-u", "/opt/app/main.py"]
