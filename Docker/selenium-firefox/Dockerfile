@@ -8,7 +8,7 @@
 FROM ubuntu:24.04
 
 RUN  apt-get update \
-    && apt-get install -y wget ca-certificates netcat \
+    && apt-get install -y wget ca-certificates netcat-openbsd \
     && rm -rf /var/lib/apt/lists/*
 
 RUN update-ca-certificates
