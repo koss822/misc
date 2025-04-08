@@ -32,8 +32,8 @@ RUN FIREFOX_DOWNLOAD_URL=$(if [ $FIREFOX_VERSION = "latest" ] || [ $FIREFOX_VERS
     && wget --no-verbose -O /tmp/firefox.tar.xz $FIREFOX_DOWNLOAD_URL \
     && apt-get -y purge iceweasel \
     && rm -rf /opt/firefox \
-    && tar -C /opt -xjf /tmp/firefox.tar.xz \
-    && rm /tmp/firefox.tar.bz2 \
+    && tar -C /opt -xJf /tmp/firefox.tar.xz \
+    && rm /tmp/firefox.tar.xz \
     && mv /opt/firefox /opt/firefox-$FIREFOX_VERSION \
     && ln -fs /opt/firefox-$FIREFOX_VERSION/firefox /usr/bin/firefox
 
