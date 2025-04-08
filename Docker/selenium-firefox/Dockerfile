@@ -44,8 +44,7 @@ RUN apt install -y libxt6 python3 python3-pip
 RUN firefox -CreateProfile "headless /moz-headless"  -headless
 RUN mkdir -p /opt/app
 WORKDIR /opt/app
-RUN pip3 install selenium boto3 webdriver-manager
 RUN python3 -m venv venv
-RUN . /opt/app/venv/bin/activate && pip install selenium boto3 webdriver-manager
+RUN . /opt/app/venv/bin/activate && pip3 install selenium boto3 webdriver-manager
 COPY main.py /opt/app/main.py
 CMD ["/opt/app/venv/bin/python", "-u", "/opt/app/main.py"]
