@@ -9,7 +9,7 @@ FROM ubuntu:24.04
 
 RUN  apt-get update \
     && apt-get install -y wget ca-certificates netcat-openbsd xz-utils libgtk-3-0 \
-    libdbus-glib-1-2 libx11-xcb1 libxt6 libxrender1 libxrandr2 libasound2t64 \
+    libdbus-glib-1-2 libx11-xcb1 libxt6 libxrender1 libxrandr2 libasound2t64 python3-venv \
     && rm -rf /var/lib/apt/lists/*
 
 RUN update-ca-certificates
@@ -42,6 +42,10 @@ RUN ln -s /opt/firefox-$FIREFOX_VERSION /opt/firefox
 RUN apt update
 RUN apt install -y libxt6 python3 python3-pip
 RUN firefox -CreateProfile "headless /moz-headless"  -headless
-RUN pip3 install selenium boto3 webdriver-manager
 RUN mkdir -p /opt/app
-CMD ["/usr/bin/python3", "-u", "/opt/app/main.py"]
+WORKDIR /opt/app
+RUN pip3 install selenium boto3 webdriver-manager
+RUN python3 -m venv venv
+RUN . /opt/app/venv/bin/activate && pip install selenium boto3 webdriver-manager
+COPY main.py /opt/app/main.py
+CMD ["/opt/app/venv/bin/python", "-u", "/opt/app/main.py"]
