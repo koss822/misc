@@ -17,6 +17,13 @@ Kubernetes (K8s)*
 
 See [ArgoCD Sample Deployment](argocd-sample) including HashiCorp Vault Operator example
 
+### CI/CD pipelines
+Running locally on GitHub Actions Runner deployed on Kubernetes
+
+![CICD](../imgs/screenshots/cicd.png)
+
+[**Sample**](cicd-sample/docker-image-sp500-dev.yml)
+
 ## Monitoring and Observability
 ### Grafana
 *Data visualization and monitoring*
