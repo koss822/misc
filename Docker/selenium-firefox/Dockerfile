@@ -16,7 +16,7 @@ RUN update-ca-certificates
 
 # OPTIONAL: Install dumb-init (Very handy for easier signal handling of SIGINT/SIGTERM/SIGKILL etc.)
 RUN nc -zv objects.githubusercontent.com 443
-RUN wget "https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_amd64.deb"
+RUN wget --retry-connrefused -w 5 -T 5 -t 20 "https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_amd64.deb"
 RUN dpkg -i dumb-init_*.deb
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
@@ -30,7 +30,7 @@ RUN FIREFOX_DOWNLOAD_URL=$(if [ $FIREFOX_VERSION = "latest" ] || [ $FIREFOX_VERS
     && apt-get update -qqy \
     && apt-get -qqy --no-install-recommends install iceweasel \
 #   && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
-    && wget --no-verbose -O /tmp/firefox.tar.xz $FIREFOX_DOWNLOAD_URL \
+    && wget --retry-connrefused -w 5 -T 5 -t 20 --no-verbose -O /tmp/firefox.tar.xz $FIREFOX_DOWNLOAD_URL \
     && apt-get -y purge iceweasel \
     && rm -rf /opt/firefox \
     && tar -C /opt -xJf /tmp/firefox.tar.xz \
