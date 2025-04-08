@@ -5,7 +5,7 @@
 # docker build -t firefox-headless .
 # docker run -it firefox-headless firefox -url http://example.com -p headless -no-remote -headless
 
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 RUN  apt-get update \
     && apt-get install -y wget \
