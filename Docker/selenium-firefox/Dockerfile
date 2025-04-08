@@ -8,11 +8,13 @@
 FROM ubuntu:24.04
 
 RUN  apt-get update \
-    && apt-get install -y wget \
+    && apt-get install -y wget ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
+RUN update-ca-certificates
+
 # OPTIONAL: Install dumb-init (Very handy for easier signal handling of SIGINT/SIGTERM/SIGKILL etc.)
-RUN wget --no-check-certificate https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_amd64.deb
+RUN wget "https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_amd64.deb"
 RUN dpkg -i dumb-init_*.deb
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
@@ -26,7 +28,7 @@ RUN FIREFOX_DOWNLOAD_URL=$(if [ $FIREFOX_VERSION = "latest" ] || [ $FIREFOX_VERS
     && apt-get update -qqy \
     && apt-get -qqy --no-install-recommends install iceweasel \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
-    && wget --no-check-certificate --no-verbose -O /tmp/firefox.tar.bz2 $FIREFOX_DOWNLOAD_URL \
+    && wget --no-verbose -O /tmp/firefox.tar.bz2 $FIREFOX_DOWNLOAD_URL \
     && apt-get -y purge iceweasel \
     && rm -rf /opt/firefox \
     && tar -C /opt -xjf /tmp/firefox.tar.bz2 \
