@@ -29,7 +29,7 @@ ARG FIREFOX_VERSION="latest"
 RUN FIREFOX_DOWNLOAD_URL=$(if [ $FIREFOX_VERSION = "latest" ] || [ $FIREFOX_VERSION = "nightly-latest" ] || [ $FIREFOX_VERSION = "devedition-latest" ]; then echo "https://download.mozilla.org/?product=firefox-$FIREFOX_VERSION-ssl&os=linux64&lang=en-US"; else echo "https://download-installer.cdn.mozilla.net/pub/firefox/releases/$FIREFOX_VERSION/linux-x86_64/en-US/firefox-$FIREFOX_VERSION.tar.xz"; fi) \
     && apt-get update -qqy \
     && apt-get -qqy --no-install-recommends install iceweasel \
-    && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
+#   && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
     && wget --no-verbose -O /tmp/firefox.tar.xz $FIREFOX_DOWNLOAD_URL \
     && apt-get -y purge iceweasel \
     && rm -rf /opt/firefox \
