@@ -3,11 +3,11 @@ name: plantuml
 on:
   workflow_dispatch: {}
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
     paths:
       - 'Kubernetes/plantuml/**'
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
     paths:
       - 'Kubernetes/plantuml/**'
 
