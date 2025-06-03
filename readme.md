@@ -8,14 +8,15 @@
 
 ## Docker & Kubernetes
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/docker.svg" alt="Docker logo" width="100" height="100"/><br />
-- [**docker-selenium-firefox**](https://github.com/koss822/misc/blob/master/Docker/selenium-firefox) - (created June/19/2022) Docker image for headless scrapping with Python, Selenium and Firefox
+- [**docker-selenium-firefox**](https://github.com/koss822/misc/blob/master/Docker/selenium-firefox) - Docker image for headless scrapping with Python, Selenium and Firefox
 - [**mikrotik-exporter**](https://github.com/koss822/mktxp) - Kubernetes version of Mikrotik mktxp exporter with builded image through CI/CD pipeline GitHub actions saved on Docker.IO
-- [**blackbox-exporter**](https://github.com/koss822/misc/blob/master/Kubernetes/website-monitoring/blackbox.yml) - (created April/24/2023) Blackbox exporter for Kubernetes (monitor websites in Grafana)
-- [**cnb-prometheus-exporter**](https://github.com/koss822/misc/blob/master/Kubernetes/cnb-prometheus-exporter) - (created June/08/2023) CNB exporter for Prometheus (monitor exchange rates in Grafana)
-- [**sp500-prometheus-exporter**](https://github.com/koss822/misc/blob/master/Kubernetes/sp500exporter) - (created July/20/2023) SP500 exporter for Prometheus
-- [**slack-alarm**](https://github.com/koss822/misc/blob/master/Kubernetes/slack-alarm) - (created Feb/2024) Notification of IKEA Parasoll door/window sensor to slack
-- [**sops**](https://github.com/koss822/misc/blob/master/Kubernetes/sops) - (created Apr/2024) SOPS Git Hooks for Kubernetes Secrets Management
-- [**pod-by-pid**](https://github.com/koss822/misc/blob/master/Kubernetes/pod-by-pid) - (created Dec/2024) A Script to Find the Kubernetes Pod Associated with a Process (PID) on MicroK8s
+- [**blackbox-exporter**](https://github.com/koss822/misc/blob/master/Kubernetes/website-monitoring/blackbox.yml) - Blackbox exporter for Kubernetes (monitor websites in Grafana)
+- [**cnb-prometheus-exporter**](https://github.com/koss822/misc/blob/master/Kubernetes/cnb-prometheus-exporter) - CNB exporter for Prometheus (monitor exchange rates in Grafana)
+- [**sp500-prometheus-exporter**](https://github.com/koss822/misc/blob/master/Kubernetes/sp500exporter) - SP500 exporter for Prometheus
+- [**slack-alarm**](https://github.com/koss822/misc/blob/master/Kubernetes/slack-alarm) - Notification of IKEA Parasoll door/window sensor to slack
+- [**sops**](https://github.com/koss822/misc/blob/master/Kubernetes/sops) - SOPS Git Hooks for Kubernetes Secrets Management
+- [**pod-by-pid**](https://github.com/koss822/misc/blob/master/Kubernetes/pod-by-pid) - A Script to Find the Kubernetes Pod Associated with a Process (PID) on MicroK8s
+- [**plantuml**](https://github.com/koss822/misc/blob/master/Kubernetes/plantuml) - (created June/2025) Docker image for PlantUML Server optimized for Kubernetes deployments. Includes built-in health checks and security hardening.
 
 ## Python
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/python.svg" alt="logo" width="100" height="100"/><br />
