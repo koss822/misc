@@ -28,8 +28,12 @@ host_vars/localhost
 ```
 2. Install ansible and run playbook
 ```
-sudo pip3 install ansible
+sudo apt install python3-venv
+python3 -m venv ansible
+. ansible/bin/activate
+pip3 install ansible
 ansible-playbook smtp.yml
+echo ahoj | mail -s test your@mail.com
 ```
 
 ### Asciinema tutorial on clean Ubuntu 18.04 machine
