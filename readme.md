@@ -31,6 +31,10 @@
 - [**HTTP HealthCheck Reboot Tool**](https://github.com/koss822/misc/blob/master/Aws/website_check/) - Simple lambda script to check availability of HTTP webserver and in case of unreachability reboot it. **OBSOLETE** (replaced with route53-healthcheck-instance-reboot)
 - [**APC_UPS**](https://github.com/koss822/misc/blob/master/Aws/apcupsarn/) - Script for sending alerts when there is a power outage through AWS SNS to your Email or Mobile
 
+## [Azure](https://github.com/koss822/misc/tree/master/Azure)
+<img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/azure.svg" alt="logo" width="100" height="100"/><br />
+- [**find-ip-in-range**](https://github.com/koss822/misc/blob/master/Azure/find-ip-in-range) - (created Aug/06/2025) This Python script helps you quickly determine if a specific IP address belongs to any of Azure's public IP ranges by checking against the official Azure IP address data. 
+
 ## [Linux](https://github.com/koss822/misc/tree/master/Linux)
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/linux.svg" alt="logo" width="100" height="100"/><br />
 ### [MySettings](https://github.com/koss822/misc/tree/master/Linux/MySettings)
