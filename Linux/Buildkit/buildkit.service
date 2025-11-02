@@ -1,0 +1,15 @@
+[Unit]
+Description=BuildKit
+After=network.target
+
+[Service]
+User=buildkituser
+ExecStart=/usr/bin/rootlesskit /opt/buildkit/bin/buildkitd --rootless --config /opt/buildkit/buildkitd.toml
+ExecStartPost=sleep 1
+ExecStartPost=/bin/chmod 666 /opt/buildkit/buildkit.sock
+Restart=always
+WorkingDirectory=/opt/buildkit
+Environment=HOME=/home/buildkituser
+
+[Install]
+WantedBy=default.target

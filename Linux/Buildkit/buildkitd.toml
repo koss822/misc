@@ -1,0 +1,5 @@
+[grpc]
+  address = ["unix:///opt/buildkit/buildkit.sock"]
+
+[otel]
+  socketPath = "/opt/buildkit/otel-grpc.sock"
