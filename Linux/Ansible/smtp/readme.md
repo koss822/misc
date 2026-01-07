@@ -11,6 +11,7 @@
 * Modify FROM header of your mail and change it to predefined text (e.g. Gmail allow sending e-mails only with FROM header which matches account e-mail)
 * Connect to Gmail or any other freemail account using SSL encrypted SMTP
 * Send e-mail to specified address (in case you are using root@yourmachine alias it sends e-mail to predefined machines
+* Tested on Ubuntu (x64, Raspberry Pi)
 
 ### Example usage
 
@@ -28,10 +29,7 @@ host_vars/localhost
 ```
 2. Install ansible and run playbook
 ```
-sudo apt install python3-venv
-python3 -m venv ansible
-. ansible/bin/activate
-pip3 install ansible
+sudo apt install ansible
 ansible-playbook smtp.yml
 echo ahoj | mail -s test your@mail.com
 ```
