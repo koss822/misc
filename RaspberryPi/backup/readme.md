@@ -1,6 +1,6 @@
 # RPi Backup Script with LVM support - Complete Documentation
 
-## Overview (Perex)
+## Overview
 **Automated backup script for Raspberry Pi over SSH.** Backs up:
 - **Boot partition** (`/dev/sda1` FAT32) bitwise via `dd`
 - **Root filesystem** (`rpi.vg-root`) via LVM snapshot

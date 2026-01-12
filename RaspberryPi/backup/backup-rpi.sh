@@ -19,7 +19,6 @@ ZFSP_BACKUP="rpi_zfspool.tar.gz"
 PTABLE_BACKUP="rpi_ptable.sfdisk"
 
 mkdir -p "$BACKUP_DIR"
-TEMP_DIR=$(mktemp -d -p "$BACKUP_DIR")
 cd "$BACKUP_DIR"
 
 # Remove old rpi temps
@@ -140,7 +139,7 @@ zfs_cleanup
 
 REPORT=$(cat <<EOF
 $(echo "✅ Done: $BACKUP_DIR")
-$(ls -lh *.img *.tar.gz *.sfdisk 2>/dev/null)
+$(ls -lh *.img.gz *.tar.gz *.sfdisk 2>/dev/null)
 $(du -sh "$BACKUP_DIR")
 EOF
 )
