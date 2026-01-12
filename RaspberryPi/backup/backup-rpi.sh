@@ -89,7 +89,7 @@ ssh "$RPI_HOST" sudo bash << EOF
 EOF
 
 SIZE=$(ssh "$RPI_HOST" "sudo cat $RPI_TEMP/root-size")
-ssh "$RPI_HOST" "sudo tar -C '$RPI_TEMP/root-mnt' -cz \
+ssh "$RPI_HOST" "sudo tar -C '$RPI_TEMP/root-mnt' -c \
   --exclude=proc --exclude=sys --exclude=dev --exclude=tmp --exclude=var/tmp \
   --exclude=run --exclude=lost+found . 2>/dev/null" | \
   pv -s $SIZE | gzip > "./$ROOT_BACKUP"
@@ -132,7 +132,7 @@ ssh "$RPI_HOST" sudo bash << EOF
 EOF
 
 SIZE=$(ssh "$RPI_HOST" "sudo cat $RPI_TEMP/zfs-size")
-ssh "$RPI_HOST" "sudo tar -C $RPI_TEMP/zfs-mnt -cz . 2>/dev/null" | \
+ssh "$RPI_HOST" "sudo tar -C $RPI_TEMP/zfs-mnt -c . 2>/dev/null" | \
   pv -s $SIZE | gzip > "./$ZFSP_BACKUP"
 
 zfs_cleanup
