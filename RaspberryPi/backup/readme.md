@@ -15,6 +15,9 @@
 
 ---
 
+## Asciinema
+[![asciicast](https://asciinema.org/a/767417.svg)](https://asciinema.org/a/767417)
+
 ## Requirements
 
 ### On backup host (linux)
