@@ -64,6 +64,7 @@
 - [**ad_pcf8591**](https://github.com/koss822/misc/tree/master/RaspberryPi/ad_pcf8591) - Chip for measuring voltage (mainly of 12V battery)
 - [**rpi_usb_stick**](https://github.com/koss822/misc/tree/master/RaspberryPi/rpi_usb_stick) - Raspbian settings for 3G modem Huawei E173
 - [**rpiwhitenoise**](https://github.com/koss822/misc/tree/master/RaspberryPi/rpiwhitenoise) - Tools for generating whitenoise (FAN) on RaspberryPi
+- [**backup**](https://github.com/koss822/misc/tree/master/RaspberryPi/backup) - RPi Backup Script with LVM support
 
 ## [Windows](https://github.com/koss822/misc/tree/master/windows)
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/windows.svg" alt="logo" width="100" height="100"/><br />

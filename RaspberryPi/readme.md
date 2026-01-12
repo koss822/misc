@@ -7,4 +7,6 @@
 
 - [**rpiwhitenoise**](https://github.com/koss822/misc/tree/master/RaspberryPi/rpiwhitenoise) - Tools for generating whitenoise (FAN) on RaspberryPi
 
+- [**backup**](https://github.com/koss822/misc/tree/master/RaspberryPi/backup) - RPi Backup Script with LVM support
+
 ![My RPI White noise machine](https://s3-eu-west-1.amazonaws.com/koss-public-misc/images/rpiwhitenoise.jpg)
