@@ -1,5 +1,9 @@
 # AWS scripts and tools
 
+## [transcribe](https://github.com/koss822/misc/blob/master/Aws/transcribe/)
+### Description
+Simple Python script to transcribe MP3 audio files using AWS Transcribe. Automatically handles S3 upload, job creation, waiting, and downloading results as both JSON and plain text.
+
 ## [s3 upload](https://github.com/koss822/misc/blob/master/Aws/s3upload/)
 ### Description
 This simple python utility will add right-click context menu to every file to upload it to S3 and make it public. Once you click on the file it will be uploaded and you will be provided a public link. Usefull for sharing images and other files.

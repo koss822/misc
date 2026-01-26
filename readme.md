@@ -31,6 +31,7 @@
 - [**HTTP HealthCheck Reboot Tool**](https://github.com/koss822/misc/blob/master/Aws/website_check/) - Simple lambda script to check availability of HTTP webserver and in case of unreachability reboot it. **OBSOLETE** (replaced with route53-healthcheck-instance-reboot)
 - [**APC_UPS**](https://github.com/koss822/misc/blob/master/Aws/apcupsarn/) - Script for sending alerts when there is a power outage through AWS SNS to your Email or Mobile
 - [**OCR**](https://github.com/koss822/misc/blob/master/Aws/ocr/) - (Created Dec/2025 with Perplexity) JPG OCR with Amazon Textract
+- [**transcribe**](https://github.com/koss822/misc/blob/master/Aws/transcribe/) - Simple Python script to transcribe MP3 audio files using AWS Transcribe. Automatically handles S3 upload, job creation, waiting, and downloading results as both JSON and plain text.
 
 ## [Azure](https://github.com/koss822/misc/tree/master/Azure)
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/azure.svg" alt="logo" width="100" height="100"/><br />
