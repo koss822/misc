@@ -3,6 +3,19 @@
 ## About
 - Personal website - [www.martinkonicek.eu](https://www.martinkonicek.eu/)
 
+## [AI DevOps](https://github.com/koss822/misc/tree/master/AI)
+<img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/ai.svg" alt="AI logo" width="100" height="100"/><br />
+<img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/diagrams/ai/ai-overview.png" alt="AI DevOps overview diagram" /><br />
+- [**claude-pipeline-monitor**](https://github.com/koss822/misc/blob/master/AI/Claude/) - Analyzes CI/CD pipeline failures with the Claude API and returns a structured root-cause report with fix suggestions
+- [**claude-log-analyzer**](https://github.com/koss822/misc/blob/master/AI/Claude/) - Streams application and system logs to Claude for anomaly detection and incident summary generation
+- [**claude-k8s-assistant**](https://github.com/koss822/misc/blob/master/AI/Claude/) - Natural-language Kubernetes troubleshooting — runs kubectl commands and feeds output to Claude for diagnosis
+- [**langchain-ops-assistant**](https://github.com/koss822/misc/blob/master/AI/LangChain/) - ReAct agent that autonomously investigates incidents using kubectl, Prometheus queries, and runbook search
+- [**langchain-runbook-qa**](https://github.com/koss822/misc/blob/master/AI/LangChain/) - Conversational Q&A over Markdown runbooks using a local FAISS vector store and Claude
+- [**langchain-incident-responder**](https://github.com/koss822/misc/blob/master/AI/LangChain/) - FastAPI webhook receiver (AlertManager / PagerDuty) that runs a triage agent and posts a structured card to Slack
+- [**rag-docs-search**](https://github.com/koss822/misc/blob/master/AI/RAG/) - Semantic search over any directory of Markdown and text documentation with Claude-generated summaries
+- [**rag-k8s-troubleshooter**](https://github.com/koss822/misc/blob/master/AI/RAG/) - Indexes Kubernetes docs and custom runbooks; answers error messages and symptoms with grounded references
+- [**rag-changelog-analyzer**](https://github.com/koss822/misc/blob/master/AI/RAG/) - Indexes CHANGELOG files and GitHub release notes for upgrade impact analysis between versions
+
 ## [Home Set-Up](https://github.com/koss822/misc/tree/master/Home)
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/diagrams/homesetup.drawio.png" alt="diagram" /><br />
 
@@ -21,13 +34,13 @@
 ## Python
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/python.svg" alt="logo" width="100" height="100"/><br />
 - [**yahoo-scraper**](https://github.com/koss822/misc/blob/master/Python/yahoo-scraper/) - Simple yahoo finance scraper to download financial data and convert them to currency you need (using Google Chrome and Docker)
-- [**tapo-watchdog**](https://github.com/koss822/misc/blob/master/Python/tapo-watchdog/) - Sometimes modem stop responding and you need to restart it. For this purpose I have created an automation which uses TP-Link Tapo P100 power socket to reboot modem 
+- [**tapo-watchdog**](https://github.com/koss822/misc/blob/master/Python/tapo-watchdog/) - Sometimes modem stop responding and you need to restart it. For this purpose I have created an automation which uses TP-Link Tapo P100 power socket to reboot modem
 - [**remove_bg**](https://github.com/koss822/misc/blob/master/Python/removebg/) - This Python script uses the `rembg` library to automatically remove image backgrounds with AI
 
 ## [Aws](https://github.com/koss822/misc/tree/master/Aws)
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/aws.svg" alt="logo" width="100" height="100"/><br />
 - [**route53-healthcheck-instance-reboot**](https://github.com/koss822/misc/blob/master/Aws/route53-healthcheck-instance-reboot/) - (created May/25/2020) This is a SAM application which watches Route53 HealthCheck and when it goes to ALARM state it reboots specified ec2 instance.
-- [**dht11**](https://github.com/koss822/misc/tree/master/Aws/dht11) - - DHT11 utilities for Raspberry Pi which reports temperature and humidity into AWS Cloudwatch
+- [**dht11**](https://github.com/koss822/misc/tree/master/Aws/dht11) - DHT11 utilities for Raspberry Pi which reports temperature and humidity into AWS Cloudwatch
 - [**s3logs**](https://github.com/koss822/misc/tree/master/Aws/s3logs) - Few tools to upload S3 access logs to MySQL database using AWS Lambda and SQS
 - [**HTTP HealthCheck Reboot Tool**](https://github.com/koss822/misc/blob/master/Aws/website_check/) - Simple lambda script to check availability of HTTP webserver and in case of unreachability reboot it. **OBSOLETE** (replaced with route53-healthcheck-instance-reboot)
 - [**APC_UPS**](https://github.com/koss822/misc/blob/master/Aws/apcupsarn/) - Script for sending alerts when there is a power outage through AWS SNS to your Email or Mobile
@@ -36,7 +49,7 @@
 
 ## [Azure](https://github.com/koss822/misc/tree/master/Azure)
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/azure.svg" alt="logo" width="100" height="100"/><br />
-- [**find-ip-in-range**](https://github.com/koss822/misc/blob/master/Azure/find-ip-in-range) - (created Aug/06/2025) This Python script helps you quickly determine if a specific IP address belongs to any of Azure's public IP ranges by checking against the official Azure IP address data. 
+- [**find-ip-in-range**](https://github.com/koss822/misc/blob/master/Azure/find-ip-in-range) - (created Aug/06/2025) This Python script helps you quickly determine if a specific IP address belongs to any of Azure's public IP ranges by checking against the official Azure IP address data.
 
 ## [Linux](https://github.com/koss822/misc/tree/master/Linux)
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/linux.svg" alt="logo" width="100" height="100"/><br />
@@ -76,7 +89,6 @@
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/print.svg" alt="logo" width="100" height="100"/><br />
 - [**3D printing Tips and Tricks**](3Dprinting/) - Tips and Tricks for Creality Ender S1 Pro and Octoprint
 
-
 ## [imgs](https://github.com/koss822/misc/tree/master/imgs)
 Various images and screenshots
 
@@ -87,5 +99,3 @@ Various images and screenshots
 
 ## License
 see [gpl.txt](https://github.com/koss822/misc/blob/master/gpl.txt)
-
-

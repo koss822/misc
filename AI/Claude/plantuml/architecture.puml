@@ -1,0 +1,36 @@
+@startuml claude-architecture
+!theme plain
+skinparam backgroundColor #FAFAFA
+skinparam defaultFontName Arial
+
+title Claude API — DevOps Integration Overview
+
+actor "Engineer" as eng
+
+package "Claude Utilities" {
+  component "claude-pipeline-monitor" as pm #LightBlue
+  component "claude-log-analyzer" as la #LightBlue
+  component "claude-k8s-assistant" as ka #LightBlue
+}
+
+cloud "Claude API\n(Anthropic)" as api #FFD580
+
+database "CI/CD Logs" as logs #EEE
+database "K8s Cluster" as k8s #EEE
+
+eng --> pm : pipeline log / GitHub run ID
+eng --> la : log file / stdin stream
+eng --> ka : natural language question
+
+pm --> logs : reads log
+ka --> k8s : kubectl commands
+
+pm --> api : structured prompt
+la --> api : log chunks (streaming)
+ka --> api : kubectl output + question
+
+api --> pm : JSON report
+api --> la : incident summary .md
+api --> ka : diagnosis + fix commands
+
+@enduml

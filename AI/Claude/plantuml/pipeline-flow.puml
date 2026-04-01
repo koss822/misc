@@ -1,0 +1,26 @@
+@startuml pipeline-flow
+!theme plain
+skinparam backgroundColor #FAFAFA
+skinparam defaultFontName Arial
+
+title claude-pipeline-monitor — Request Flow
+
+start
+
+:Fetch pipeline log\n(file path or GitHub run ID);
+:Chunk log into segments\n(max 8k tokens each);
+:Build structured prompt\nwith failure context;
+:Call Claude API\n(claude-sonnet-4-6);
+:Parse JSON response\n{root_cause, fix, severity};
+
+if (severity == HIGH?) then (yes)
+  :Send alert\n(Slack / email via SNS);
+  :Write report.json;
+else (no)
+  :Write report.json;
+endif
+
+:Print summary to stdout;
+stop
+
+@enduml

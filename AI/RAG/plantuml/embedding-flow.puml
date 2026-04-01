@@ -1,0 +1,29 @@
+@startuml embedding-flow
+!theme plain
+skinparam backgroundColor #FAFAFA
+skinparam defaultFontName Arial
+
+title Document Embedding Flow — rag-docs-search
+
+start
+
+:Scan source directory\nfor .md / .txt files;
+:Read and clean document text\n(strip HTML, normalize whitespace);
+:Split with RecursiveCharacterTextSplitter\n(chunk_size=1000, overlap=200);
+
+fork
+  :Chunk batch 1;
+fork again
+  :Chunk batch 2;
+fork again
+  :Chunk batch N;
+end fork
+
+:Call Embedding API\n(Claude / text-embedding-3-small)\nfor each batch;
+:Store vector + metadata\n(source file, chunk index, heading)\nin Chroma collection;
+:Persist collection to ./chroma_db/;
+
+:Log summary:\nN documents | M chunks | elapsed time;
+stop
+
+@enduml

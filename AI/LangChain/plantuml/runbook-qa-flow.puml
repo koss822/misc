@@ -1,0 +1,36 @@
+@startuml runbook-qa-flow
+!theme plain
+skinparam backgroundColor #FAFAFA
+skinparam defaultFontName Arial
+
+title langchain-runbook-qa — Indexing & Query Flow
+
+rectangle "Indexing Pipeline (run once)" #FFFACD {
+  component "Markdown Loader" as loader
+  component "RecursiveCharacterTextSplitter\n(chunk=1000, overlap=200)" as splitter
+  component "Embedding Model\n(Claude / OpenAI)" as embedder
+  database "FAISS Index\n(persisted to disk)" as faiss
+
+  loader --> splitter
+  splitter --> embedder
+  embedder --> faiss
+}
+
+rectangle "Query Pipeline (interactive)" #E0F7FA {
+  actor "User" as user
+  component "Query Embedder" as qembed
+  component "Retriever (top-5)" as retriever
+  component "Prompt Builder\n(context + question)" as prompt
+  cloud "Claude API" as llm #FFD580
+  component "Answer + source file" as answer
+
+  user --> qembed : question
+  qembed --> retriever
+  retriever --> faiss : cosine similarity
+  retriever --> prompt : relevant chunks
+  prompt --> llm
+  llm --> answer
+  answer --> user
+}
+
+@enduml

@@ -1,0 +1,36 @@
+@startuml rag-pipeline
+!theme plain
+skinparam backgroundColor #FAFAFA
+skinparam defaultFontName Arial
+
+title RAG Pipeline — Indexing and Query
+
+rectangle "Indexing Pipeline" #FFFACD {
+  component "Document Loader\n(.md / .txt / .rst)" as loader
+  component "Text Splitter\n(chunk=1000, overlap=200)" as splitter
+  component "Embedding Model" as embedder
+  database "Vector Store\n(Chroma — persistent)" as vs
+
+  loader --> splitter : raw text
+  splitter --> embedder : chunks
+  embedder --> vs : vectors + metadata
+}
+
+rectangle "Query Pipeline" #E0F7FA {
+  actor "User" as user
+  component "Query Embedder" as qembed
+  component "Retriever\n(top-k, MMR)" as retriever
+  component "Prompt Builder" as prompt
+  cloud "Claude API\n(claude-sonnet-4-6)" as llm #FFD580
+  component "Grounded Answer\n+ source citations" as answer
+
+  user --> qembed : question
+  qembed --> retriever : query vector
+  retriever --> vs : similarity search
+  retriever --> prompt : relevant chunks + metadata
+  prompt --> llm
+  llm --> answer
+  answer --> user
+}
+
+@enduml
