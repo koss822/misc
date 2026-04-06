@@ -2,6 +2,8 @@
 
 Deploy a full **LXQt graphical desktop** accessible from any browser via **noVNC over HTTPS**, running as your regular Linux user on Ubuntu 24.04. One script does everything: installs packages, configures VNC, generates a domain SSL certificate signed by your own root CA, and sets up nginx as a reverse proxy.
 
+![LXQt desktop via noVNC](../../imgs/screenshots/vnc.png)
+
 ---
 
 ## Table of Contents
