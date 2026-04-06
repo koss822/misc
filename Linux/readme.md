@@ -8,6 +8,9 @@
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/ansible.svg" alt="logo" width="100" height="100"/><br />
 - [**smtp**](https://github.com/koss822/misc/tree/master/Linux/Ansible/smtp) - tutorial how to set-up SMTP relay with Ansible on Ubuntu 18.04
 
+### [Ubuntu-VNC](https://github.com/koss822/misc/tree/master/Linux/Ubuntu-VNC)
+- [**ubuntu-vnc**](https://github.com/koss822/misc/tree/master/Linux/Ubuntu-VNC) - One-script setup of LXQt desktop + TigerVNC + noVNC + nginx HTTPS on Ubuntu 24.04, running as a regular user with a custom root CA signed certificate. See the [README](https://github.com/koss822/misc/blob/master/Linux/Ubuntu-VNC/README.md) for a full tutorial.
+
 ### [Projects](https://github.com/koss822/misc/tree/master/Linux/Projects)
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/projects.svg" alt="logo" width="100" height="100"/><br />
 - [**openvpn**](https://github.com/koss822/misc/tree/master/Linux/Projects/openvpn) - OpenVPN generator of configuration and keys based on single YAML file. There are also attached tools for automatic restart of OpenVPN client on Windows and Linux systems

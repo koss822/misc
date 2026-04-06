@@ -205,7 +205,7 @@ openssl x509 -req \
     -CAkey "${ROOT_CA_KEY}" \
     -CAcreateserial \
     -out "${CERT_DIR}/${DOMAIN}.crt" \
-    -days 825 \
+    -days 3650 \
     -extfile "${CERT_DIR}/${DOMAIN}.ext"
 
 chmod 600 "${CERT_DIR}/${DOMAIN}.key"

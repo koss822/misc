@@ -32,7 +32,7 @@ The script `setup-lxqt-vnc.sh` automates the following on a fresh **Ubuntu 24.04
 | **TigerVNC** | VNC server, runs as your current user on display `:1` |
 | **noVNC + websockify** | Browser-based VNC client, listens on `localhost:6080` |
 | **nginx** | HTTPS reverse proxy, forwards `https://<domain>/` → noVNC |
-| **SSL certificate** | Signed by your own root CA, valid for 825 days |
+| **SSL certificate** | Signed by your own root CA, valid for 3650 days (10 years) |
 
 Services are registered as **systemd user units** — they start automatically on boot without requiring a login session (via `loginctl enable-linger`). nginx runs as a system service since it needs to bind to port 443.
 
