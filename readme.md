@@ -65,6 +65,7 @@
 - [**bacula**](https://github.com/koss822/misc/tree/master/Linux/Bacula) - Monitor daily backup sizes from Bacula using InfluxDB and Grafana and Nagios plugin to check bacula director running
 - [**nagios**](https://github.com/koss822/misc/tree/master/Linux/Nagios) - Nagios NRPE plugins, e.g. for checking running PODs on Kubernetes
 - [**docker buildkit**](https://github.com/koss822/misc/tree/master/Linux/Buildkit) - Rootless BuildKit Daemon Setup with RootlessKit on Ubuntu
+- [**ubuntu-vnc**](https://github.com/koss822/misc/tree/master/Linux/Ubuntu-VNC) - One-script setup of LXQt desktop + TigerVNC + noVNC + nginx HTTPS on Ubuntu 24.04, running as a regular user with a custom root CA signed certificate
 
 ### [Projects](https://github.com/koss822/misc/tree/master/Linux/Projects)
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/projects.svg" alt="logo" width="100" height="100"/><br />
