@@ -1,6 +1,6 @@
 # LXQt + VNC on Ubuntu 24.04 — Complete Setup Guide
 
-Deploy a full **LXQt graphical desktop** accessible from any browser via **noVNC over HTTPS**, running as your regular Linux user on Ubuntu 24.04. One script does everything: installs packages, configures VNC, generates a domain SSL certificate signed by your own root CA, and sets up nginx as a reverse proxy.
+Deploy a full **LXQt graphical desktop** accessible from any browser via **noVNC over HTTPS**, running as your regular Linux user on Ubuntu 24.04. One script does everything: installs packages, configures VNC with native TLS encryption (VeNCrypt/X509), generates a domain SSL certificate signed by your own root CA, and sets up nginx as a reverse proxy.
 
 ![LXQt desktop via noVNC](../../imgs/screenshots/vnc.png)
 
@@ -31,12 +31,20 @@ The script `setup-lxqt-vnc.sh` automates the following on a fresh **Ubuntu 24.04
 | Component | Details |
 |---|---|
 | **LXQt** | Lightweight Qt-based desktop environment |
-| **TigerVNC** | VNC server, runs as your current user on display `:1` |
+| **TigerVNC** | VNC server, runs as your current user on display `:1`, with native TLS via VeNCrypt/X509Vnc |
 | **noVNC + websockify** | Browser-based VNC client, listens on `localhost:6080` |
 | **nginx** | HTTPS reverse proxy, forwards `https://<domain>/` → noVNC |
-| **SSL certificate** | Signed by your own root CA, valid for 3650 days (10 years) |
+| **SSL certificate** | Signed by your own root CA, valid for 3650 days (10 years); used by both nginx and TigerVNC |
 
 Services are registered as **systemd user units** — they start automatically on boot without requiring a login session (via `loginctl enable-linger`). nginx runs as a system service since it needs to bind to port 443.
+
+### Security model
+
+TigerVNC uses **VeNCrypt with X509Vnc** — the VNC connection itself is TLS-encrypted using the domain certificate. This means:
+
+- Native VNC clients (e.g. TigerVNC Viewer, RealVNC) connect to port **5901** with TLS directly — no nginx needed for them.
+- Browser access goes through **noVNC → nginx (port 443)** as before.
+- `-localhost no` allows direct VNC connections from the network (protect with firewall — see [Firewall Setup](#firewall-setup)).
 
 ---
 
@@ -136,9 +144,9 @@ The script will:
 1. Prompt for VNC password, CA paths, and domain name
 2. Install all packages with `sudo apt-get`
 3. Write VNC and LXQt config files in your home directory
-4. Generate `~/.certs/<domain>/<domain>.crt` signed by your CA
+4. Generate `~/.certs/<domain>/<domain>.crt` signed by your CA (used by both nginx and TigerVNC)
 5. Write `/etc/nginx/sites-available/novnc` (requires sudo) and restart nginx
-6. Create and start `vncserver` and `novnc` systemd user services
+6. Create and start `vncserver` (with VeNCrypt/X509 TLS) and `novnc` systemd user services
 7. Enable `loginctl linger` so services start on boot
 
 Total time: approximately 3–5 minutes on a typical machine.
@@ -147,7 +155,9 @@ Total time: approximately 3–5 minutes on a typical machine.
 
 ## Accessing the Remote Desktop
 
-Once the script finishes, open a browser and go to:
+### Option A — Browser (noVNC via nginx)
+
+Open a browser and go to:
 
 ```
 https://<domain>/vnc.html
@@ -159,6 +169,18 @@ https://vnc.home.lan/vnc.html
 ```
 
 You will be prompted for the VNC password you set during installation.
+
+### Option B — Native VNC client (TigerVNC Viewer, RealVNC, etc.)
+
+Connect to port **5901** with TLS encryption (VeNCrypt/X509):
+
+```
+Host:  <server-ip>
+Port:  5901
+Encryption: VeNCrypt / X509Vnc (TLS)
+```
+
+In **TigerVNC Viewer**: enter `<server-ip>:5901`, click *Options* → *Security* → select **VeNCrypt** and set the CA certificate to your `rootCA.crt`.
 
 > **DNS requirement:** The domain must resolve to the server's IP. For a local network, add a line to your router's DNS, Pi-hole, or the `/etc/hosts` file on your client machine:
 > ```
@@ -262,19 +284,27 @@ When using HTTPS with a trusted certificate (which this setup provides), the bro
 
 ## Firewall Setup
 
-Restrict access so only HTTPS (nginx) and SSH are reachable from the network. The raw VNC port (5901) and noVNC port (6080) stay on localhost only.
+TigerVNC now binds to all interfaces (`-localhost no`) so it can accept direct TLS connections from native VNC clients. Open port 5901 in addition to SSH and HTTPS, and block the raw noVNC port (6080) which is only needed internally by nginx.
 
 ```bash
 sudo apt install ufw -y
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
-sudo ufw allow 22    # SSH
-sudo ufw allow 443   # HTTPS (nginx → noVNC)
+sudo ufw allow 22     # SSH
+sudo ufw allow 443    # HTTPS (nginx → noVNC browser access)
+sudo ufw allow 5901   # TigerVNC with TLS (native VNC clients)
 sudo ufw enable
 sudo ufw status
 ```
 
-Port 5901 (VNC) and 6080 (noVNC) are bound to `localhost` only and are not affected.
+| Port | Service | Accessible from |
+|---|---|---|
+| 22 | SSH | network |
+| 443 | nginx → noVNC (browser) | network |
+| 5901 | TigerVNC (TLS, VeNCrypt) | network |
+| 6080 | noVNC/websockify (plain HTTP) | localhost only — blocked by firewall |
+
+> **Note:** Port 6080 (noVNC) is intentionally not opened — it is unencrypted and accessed only by nginx on localhost. All external traffic goes through nginx (443) or directly to TigerVNC (5901) with TLS.
 
 ---
 
