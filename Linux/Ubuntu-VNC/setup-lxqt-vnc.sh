@@ -268,7 +268,7 @@ Type=forking
 Environment=HOME=${CURRENT_HOME}
 ExecStartPre=/bin/sh -c "/usr/bin/vncserver -kill :1 > /dev/null 2>&1 || :"
 ExecStart=/usr/bin/vncserver :1 -geometry ${VNC_RES} -depth 24 \
-  -SecurityTypes None,VeNCrypt,X509Vnc \
+  -SecurityTypes VncAuth,VeNCrypt,X509Vnc \
   -X509Cert ${CERT_DIR}/${DOMAIN}.crt \
   -X509Key ${CERT_DIR}/${DOMAIN}.key \
   -rfbauth ${CURRENT_HOME}/.config/tigervnc/passwd \
