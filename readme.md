@@ -6,6 +6,7 @@
 ## [AI Projects](https://github.com/koss822/misc/tree/master/AI-projects)
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/ai.svg" alt="AI logo" width="100" height="100"/><br />
 - [**ram-monitor**](https://github.com/koss822/misc/blob/master/AI-projects/ram-monitor/) - Zoomable D3.js sunburst dashboard showing live RAM usage by process and user, served via nginx HTTPS with a one-script installer
+- [**web-screenshots**](https://github.com/koss822/misc/blob/master/AI-projects/web-screenshots/) - Headless Firefox screenshot tool for JS-heavy pages (D3, React, Vue) using Selenium WebDriver — waits for CSS selector before capturing
 
 ## [Home Set-Up](https://github.com/koss822/misc/tree/master/Home)
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/diagrams/homesetup.drawio.png" alt="diagram" /><br />
