@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RAM Monitor</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0f0e17;
+  color: #fffffe;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+h1 {
+  font-size: 1.3rem;
+  color: #a7c4d2;
+  margin-bottom: 4px;
+  letter-spacing: 0.05em;
+}
+#meta {
+  font-size: 0.75rem;
+  color: #555;
+  margin-bottom: 16px;
+}
+#chart { cursor: pointer; }
+#tooltip {
+  position: fixed;
+  background: rgba(15, 14, 23, 0.95);
+  border: 1px solid #2e2e3a;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  pointer-events: none;
+  display: none;
+  z-index: 100;
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+<h1>RAM Monitor</h1>
+<div id="meta">
+  Auto-refresh every 5 s &nbsp;·&nbsp;
+  Click segment = zoom in &nbsp;·&nbsp;
+  Click center = zoom out &nbsp;·&nbsp;
+  Last update: <span id="ts">–</span>
+</div>
+<div id="tooltip"></div>
+<svg id="chart"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script>
+'use strict';
+
+const W = Math.min(window.innerWidth - 40, 820);
+const R = W / 2;
+
+function fmt(b) {
+  if (b >= 1e9) return (b / 1e9).toFixed(2) + ' GB';
+  if (b >= 1e6) return (b / 1e6).toFixed(0) + ' MB';
+  return (b / 1e3).toFixed(0) + ' KB';
+}
+
+const TOP_COLORS = {
+  'Processes':     '#4a8fbb',
+  'Buffers+Cache': '#4caf50',
+  'Free':          '#607d8b',
+};
+
+const userColor = d3.scaleOrdinal(d3.schemeTableau10);
+
+function nodeColor(d) {
+  if (d.depth === 0) return '#1a1a2e';
+  if (d.depth === 1) return TOP_COLORS[d.data.name] || '#888';
+
+  const top = d.ancestors().find(a => a.depth === 1);
+  if (top && top.data.name === 'Processes') {
+    const userNode = d.ancestors().find(a => a.depth === 2);
+    const base = d3.color(userColor(userNode ? userNode.data.name : d.data.name));
+    return d.depth > 2 ? base.brighter((d.depth - 2) * 0.5).toString() : base.toString();
+  }
+
+  const base = d3.color(TOP_COLORS[top ? top.data.name : ''] || '#888');
+  return base ? base.brighter((d.depth - 1) * 0.5).toString() : '#888';
+}
+
+function render(data) {
+  const svg = d3.select('#chart')
+    .attr('width', W)
+    .attr('height', W)
+    .attr('viewBox', [0, 0, W, W]);
+
+  svg.selectAll('*').remove();
+
+  const root = d3.hierarchy(data)
+    .sum(d => d.value ?? 0)
+    .sort((a, b) => b.value - a.value);
+
+  const total = data.total || root.value;
+
+  d3.partition().size([2 * Math.PI, root.height + 1])(root);
+  root.each(d => { d.current = { x0: d.x0, x1: d.x1, y0: d.y0, y1: d.y1 }; });
+
+  const step = R / (root.height + 1);
+
+  const arcGen = d3.arc()
+    .startAngle(d => d.x0)
+    .endAngle(d => d.x1)
+    .padAngle(d => Math.min((d.x1 - d.x0) / 2, 0.005))
+    .padRadius(R)
+    .innerRadius(d => d.y0 * step)
+    .outerRadius(d => Math.max(d.y0 * step, d.y1 * step - 1));
+
+  const g = svg.append('g').attr('transform', `translate(${R},${R})`);
+
+  const slices = g.append('g')
+    .selectAll('path')
+    .data(root.descendants().slice(1))
+    .join('path')
+    .attr('fill', d => nodeColor(d))
+    .attr('fill-opacity', d => arcVisible(d.current) ? (d.children ? 0.85 : 0.65) : 0)
+    .attr('pointer-events', d => arcVisible(d.current) ? 'auto' : 'none')
+    .attr('d', d => arcGen(d.current));
+
+  slices.filter(d => d.children).style('cursor', 'pointer').on('click', zoom);
+
+  const tooltip = d3.select('#tooltip');
+  slices
+    .on('mousemove', (e, d) => {
+      tooltip
+        .style('display', 'block')
+        .style('left', (e.clientX + 14) + 'px')
+        .style('top',  (e.clientY - 8)  + 'px')
+        .html(`<strong>${d.data.name}</strong><br>${fmt(d.value)} &nbsp;(${(d.value / total * 100).toFixed(1)} %)`);
+    })
+    .on('mouseleave', () => tooltip.style('display', 'none'));
+
+  const labels = g.append('g')
+    .attr('pointer-events', 'none')
+    .attr('text-anchor', 'middle')
+    .selectAll('text')
+    .data(root.descendants().slice(1))
+    .join('text')
+    .style('font-size', '10px')
+    .style('fill', '#fff')
+    .style('user-select', 'none')
+    .attr('dy', '0.35em')
+    .attr('fill-opacity', d => +labelVisible(d.current))
+    .attr('transform', d => labelXform(d.current))
+    .text(d => {
+      const s = d.data.name;
+      return s.length > 13 ? s.slice(0, 12) + '…' : s;
+    });
+
+  const innerR = step - 2;
+  g.append('circle')
+    .datum(root)
+    .attr('r', innerR)
+    .attr('fill', '#16213e')
+    .style('cursor', 'pointer')
+    .on('click', zoom);
+
+  const cName = g.append('text')
+    .attr('text-anchor', 'middle').attr('dy', '-0.4em')
+    .style('font-size', '13px').style('fill', '#a7c4d2')
+    .text(root.data.name);
+
+  const cVal = g.append('text')
+    .attr('text-anchor', 'middle').attr('dy', '1em')
+    .style('font-size', '11px').style('fill', '#666')
+    .text(fmt(total));
+
+  let focused = root;
+
+  function zoom(event, p) {
+    if (p === focused) p = p.parent || root;
+    focused = p;
+
+    cName.text(p.data.name);
+    cVal.text(fmt(p.value));
+
+    root.each(d => {
+      d.target = {
+        x0: Math.max(0, Math.min(1, (d.x0 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
+        x1: Math.max(0, Math.min(1, (d.x1 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
+        y0: Math.max(0, d.y0 - p.depth),
+        y1: Math.max(0, d.y1 - p.depth),
+      };
+    });
+
+    const t = g.transition().duration(600);
+
+    slices.transition(t)
+      .tween('data', d => {
+        const i = d3.interpolate(d.current, d.target);
+        return t => { d.current = i(t); };
+      })
+      .filter(function(d) {
+        return +this.getAttribute('fill-opacity') || arcVisible(d.target);
+      })
+      .attr('fill-opacity', d => arcVisible(d.target) ? (d.children ? 0.85 : 0.65) : 0)
+      .attr('pointer-events', d => arcVisible(d.target) ? 'auto' : 'none')
+      .attrTween('d', d => () => arcGen(d.current));
+
+    labels.filter(function(d) {
+      return +this.getAttribute('fill-opacity') || labelVisible(d.target);
+    }).transition(t)
+      .attr('fill-opacity', d => +labelVisible(d.target))
+      .attrTween('transform', d => () => labelXform(d.current));
+  }
+
+  function arcVisible(d) {
+    return d.y1 <= root.height + 1 && d.y0 >= 1 && d.x1 > d.x0;
+  }
+
+  function labelVisible(d) {
+    return d.y1 <= root.height + 1 && d.y0 >= 1 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.04;
+  }
+
+  function labelXform(d) {
+    const x = ((d.x0 + d.x1) / 2) * 180 / Math.PI;
+    const y = ((d.y0 + d.y1) / 2) * step;
+    return `rotate(${x - 90}) translate(${y},0) rotate(${x < 180 ? 0 : 180})`;
+  }
+}
+
+async function refresh() {
+  try {
+    const data = await fetch('/api/ram').then(r => r.json());
+    render(data);
+    document.getElementById('ts').textContent = new Date().toLocaleTimeString();
+  } catch (e) {
+    console.error('Fetch error:', e);
+  }
+}
+
+refresh();
+setInterval(refresh, 5000);
+</script>
+</body>
+</html>

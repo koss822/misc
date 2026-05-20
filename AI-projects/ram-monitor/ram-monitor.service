@@ -1,0 +1,14 @@
+[Unit]
+Description=RAM Monitor (D3.js sunburst dashboard)
+After=network.target
+
+[Service]
+Type=simple
+User=YOUR_USERNAME
+WorkingDirectory=/home/YOUR_USERNAME/ram-monitor
+ExecStart=/usr/bin/python3 /home/YOUR_USERNAME/ram-monitor/server.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

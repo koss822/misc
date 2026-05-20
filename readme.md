@@ -3,18 +3,9 @@
 ## About
 - Personal website - [www.martinkonicek.eu](https://www.martinkonicek.eu/)
 
-## [AI DevOps](https://github.com/koss822/misc/tree/master/AI)
+## [AI Projects](https://github.com/koss822/misc/tree/master/AI-projects)
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/ai.svg" alt="AI logo" width="100" height="100"/><br />
-<img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/diagrams/ai/ai-overview.png" alt="AI DevOps overview diagram" /><br />
-- [**claude-pipeline-monitor**](https://github.com/koss822/misc/blob/master/AI/Claude/) - Analyzes CI/CD pipeline failures with the Claude API and returns a structured root-cause report with fix suggestions
-- [**claude-log-analyzer**](https://github.com/koss822/misc/blob/master/AI/Claude/) - Streams application and system logs to Claude for anomaly detection and incident summary generation
-- [**claude-k8s-assistant**](https://github.com/koss822/misc/blob/master/AI/Claude/) - Natural-language Kubernetes troubleshooting — runs kubectl commands and feeds output to Claude for diagnosis
-- [**langchain-ops-assistant**](https://github.com/koss822/misc/blob/master/AI/LangChain/) - ReAct agent that autonomously investigates incidents using kubectl, Prometheus queries, and runbook search
-- [**langchain-runbook-qa**](https://github.com/koss822/misc/blob/master/AI/LangChain/) - Conversational Q&A over Markdown runbooks using a local FAISS vector store and Claude
-- [**langchain-incident-responder**](https://github.com/koss822/misc/blob/master/AI/LangChain/) - FastAPI webhook receiver (AlertManager / PagerDuty) that runs a triage agent and posts a structured card to Slack
-- [**rag-docs-search**](https://github.com/koss822/misc/blob/master/AI/RAG/) - Semantic search over any directory of Markdown and text documentation with Claude-generated summaries
-- [**rag-k8s-troubleshooter**](https://github.com/koss822/misc/blob/master/AI/RAG/) - Indexes Kubernetes docs and custom runbooks; answers error messages and symptoms with grounded references
-- [**rag-changelog-analyzer**](https://github.com/koss822/misc/blob/master/AI/RAG/) - Indexes CHANGELOG files and GitHub release notes for upgrade impact analysis between versions
+- [**ram-monitor**](https://github.com/koss822/misc/blob/master/AI-projects/ram-monitor/) - Zoomable D3.js sunburst dashboard showing live RAM usage by process and user, served via nginx HTTPS with a one-script installer
 
 ## [Home Set-Up](https://github.com/koss822/misc/tree/master/Home)
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/diagrams/homesetup.drawio.png" alt="diagram" /><br />
