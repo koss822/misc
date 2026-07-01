@@ -65,6 +65,7 @@
 - [**sshtunnel-daemon**](https://github.com/koss822/misc/tree/master/Linux/Projects/sshtunnel-daemon) - Simple docker image to allow creation of stable SSH tunnels with single YAML file configuration
 - [**usb_backup**](https://github.com/koss822/misc/tree/master/Linux/Projects/usb_backup) - Simple script for backup hard drive to USB drive using Btrfs file system, snapshots and LUKS encryption
 - [**dante_socks**](https://github.com/koss822/misc/tree/master/Linux/Projects/dante_socks) - Dante Socks RPM package for Dante Socks proxy installation
+- [**keycloak-force-password-reset**](https://github.com/koss822/misc/tree/master/Linux/Projects/keycloak-force-password-reset) - Bulk-triggers Keycloak's "Update Password" required action for a list of users, emailing each a password reset link
 
 ## [RaspberryPi](https://github.com/koss822/misc/tree/master/RaspberryPi)
 <img src="https://raw.githubusercontent.com/koss822/misc/master/imgs/logos-svg/raspberry-pi.svg" alt="logo" width="100" height="100"/><br />
