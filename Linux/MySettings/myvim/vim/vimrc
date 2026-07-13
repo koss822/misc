@@ -1,0 +1,163 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+" ============================================================
+"  ~/.vimrc — osobní nastavení
+"  Navazuje na /etc/vim/vimrc (tam je Vundle, airline, colorscheme...)
+"  Sem patří jen věci specifické pro tebe / pro psaní markdownu.
+" ============================================================
+
+" ============================================================
+"  Markdown (plugin plasticboy/vim-markdown — nainstalován přes
+"  systémový Vundle, viz /etc/vim/vimrc)
+" ============================================================
+let g:vim_markdown_folding_disabled = 0     " foldy podle nadpisů zapnuté
+let g:vim_markdown_folding_level = 6
+let g:vim_markdown_frontmatter = 1          " rozpoznat YAML frontmatter (---)
+let g:vim_markdown_strikethrough = 1
+let g:vim_markdown_autowrite = 1            " auto-save při skoku na odkaz
+let g:vim_markdown_toc_autofit = 1          " TOC se automaticky zúží na délku nadpisů
+
+" Nechci schovávat ** a # znaky — chci vidět syrovou markdown syntaxi
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
+
+" --- Nastavení jen pro *.md soubory --------------------------
+augroup markdown_writing
+  autocmd!
+  autocmd FileType markdown setlocal wrap linebreak
+  autocmd FileType markdown setlocal textwidth=0        " žádné natvrdo zalamování
+  autocmd FileType markdown setlocal spell spelllang=cs,en
+  autocmd FileType markdown setlocal conceallevel=0
+  autocmd FileType markdown setlocal foldlevel=99        " po otevření je vše rozbalené
+  " pohyb po viditelných (ne logických) řádcích při zapnutém wrap
+  autocmd FileType markdown nnoremap <buffer> j gj
+  autocmd FileType markdown nnoremap <buffer> k gk
+  autocmd FileType markdown nnoremap <buffer> 0 g0
+  autocmd FileType markdown nnoremap <buffer> $ g$
+augroup END
+
+" ============================================================
+"  Table mode (dhruvasagar/vim-table-mode) — tabulky za psaní
+" ============================================================
+let g:table_mode_corner = '|'          " GFM styl tabulek pro markdown
+let g:table_mode_corner_corner = '|'
+let g:table_mode_header_fillchar = '-'
+
+" ============================================================
+"  Obecné doplňky (nekoliduje s /etc/vim/vimrc)
+" ============================================================
+set number relativenumber
+set undofile
+set undodir=~/.vim/undodir      " ať to nepadá, pokud adresář neexistuje: mkdir -p ~/.vim/undodir
+set ignorecase smartcase incsearch
+set clipboard=unnamedplus       " sdílená schránka se systémem (X11/Wayland)
+
+let mapleader = ","
+
+" Generování obsahu (TOC) pro markdown
+nnoremap <leader>t :GenTocGFM<CR>
+
+" Rychlé uložení
+nnoremap <leader>w :w<CR>
+
+" Kontrola pravopisu on/off
+nnoremap <leader>s :set spell!<CR>
+
+" Návrhy oprav pro chybné slovo (z= je na CZ klávesnici nepohodlné psát,
+" '=' je za AltGr). Function keys (F7/F8) nefungují spolehlivě v PuTTY,
+" takže mapováno na <leader> kombinace — ty jedou všude stejně.
+nnoremap <leader>z z=
+
+" Skok na další chybu a rovnou nabídne opravu v jednom kroku
+nnoremap <leader>x ]sz=
+
+" Skok na předchozí chybu a rovnou nabídne opravu
+nnoremap <leader>X [sz=
+
+
+" set the runtime path to include Vundle and initialize
+set rtp+=/etc/vim/bundle/Vundle.vim
+set rtp+=/etc/vim/bundle/vim-airline
+set rtp+=/etc/vim/bundle/vim-airline-themes
+set rtp+=/etc/vim
+set backspace=2
+execute pathogen#infect()
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'godlygeek/tabular'
+Plugin 'dhruvasagar/vim-table-mode'
+
+" Dependencies
+Plugin 'prabirshrestha/async.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+colo koehler
+syntax on
+highlight Comment ctermfg=green
+set laststatus=2
+let &t_Co=256
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
+
+" Intend
+ map <Tab> >
+ map <S-Tab> <
+
+" Run python code when F5 pressed
+nnoremap <F5> :call <SID>compile_and_run()<CR>
+
+function! s:compile_and_run()
+    exec 'w'
+    if &filetype == 'c'
+        exec "AsyncRun! gcc % -o %<; time ./%<"
+    elseif &filetype == 'cpp'
+       exec "AsyncRun! g++ -std=c++11 % -o %<; time ./%<"
+    elseif &filetype == 'java'
+       exec "AsyncRun! javac %; time java %<"
+    elseif &filetype == 'sh'
+       exec "AsyncRun! time bash %"
+    elseif &filetype == 'python'
+       exec "AsyncRun! time python3 %"
+    endif
+endfunction
+
+" Deprecated:
+" augroup SPACEVIM_ASYNCRUN
+"     autocmd!
+"    " Automatically open the quickfix window
+"     autocmd User AsyncRunStart call asyncrun#quickfix_toggle(15, 1)
+" augroup END
+"
+" asyncrun now has an option for opening quickfix automatically
+let g:asyncrun_open = 15
+set hlsearch
+autocmd BufRead,BufNewFile *.deckspec set filetype=yaml
+
+" Powershell
+:let g:ps1_nofold_blocks = 1
+:let g:ps1_nofold_sig = 1
+
+" Force saving files that require root permission
+cnoremap w!! w !sudo tee > /dev/null %

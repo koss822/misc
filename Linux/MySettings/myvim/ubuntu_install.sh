@@ -1,12 +1,17 @@
 #!/bin/bash
 cd /tmp
 git clone https://github.com/koss822/misc.git
-cd misc
-cp -R Linux/MySettings/myvim/* /etc
+cd misc/Linux/MySettings/myvim
 mv /etc/vim/vimrc /etc/vim/vimrc.old
-ln -s /etc/vimrc /etc/vim/vimrc
+cp -R vim /etc
 mkdir -p /usr/share/vim/
 mv /usr/share/vim/vimrc /usr/share/vim/vimrc.old 2>/dev/null
-ln -s /etc/vimrc /usr/share/vim/vimrc
+ln -s /etc/vim/vimrc /usr/share/vim/vimrc
 rm -rf /tmp/misc
 update-alternatives --set editor /usr/bin/vim.basic
+
+# Czech spellcheck dictionary (vimrc má spelllang=cs,en), do domova skutečného uživatele
+TARGET_HOME=$(getent passwd "${SUDO_USER:-$USER}" | cut -d: -f6)
+sudo -u "${SUDO_USER:-$USER}" mkdir -p "$TARGET_HOME/.vim/spell"
+sudo -u "${SUDO_USER:-$USER}" curl -fsSL -o "$TARGET_HOME/.vim/spell/cs.utf-8.spl" https://ftp.nluug.nl/vim/runtime/spell/cs.utf-8.spl
+sudo -u "${SUDO_USER:-$USER}" curl -fsSL -o "$TARGET_HOME/.vim/spell/cs.utf-8.sug" https://ftp.nluug.nl/vim/runtime/spell/cs.utf-8.sug
