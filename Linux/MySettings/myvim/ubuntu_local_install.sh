@@ -8,5 +8,5 @@ sudo update-alternatives --set editor /usr/bin/vim.basic
 
 # Czech spellcheck dictionary (vimrc má spelllang=cs,en)
 mkdir -p ~/.vim/spell
-curl -fsSL -o ~/.vim/spell/cs.utf-8.spl https://ftp.nluug.nl/vim/runtime/spell/cs.utf-8.spl
-curl -fsSL -o ~/.vim/spell/cs.utf-8.sug https://ftp.nluug.nl/vim/runtime/spell/cs.utf-8.sug
+curl -fsSL -o ~/.vim/spell/cs.utf-8.spl http://ftp.vim.org/pub/vim/runtime/spell/cs.utf-8.spl
+curl -fsSL -o ~/.vim/spell/cs.utf-8.sug http://ftp.vim.org/pub/vim/runtime/spell/cs.utf-8.sug
